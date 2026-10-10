@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import Starfield from './Starfield.astro';
+import IconStage from './IconStage.astro';
+import Gallery from './Gallery.astro';
+import SectionHead from './SectionHead.astro';
+import AppIcon from './AppIcon.astro';
+import Glyph from './Glyph.astro';
+import Icon from './Icon.astro';
+import { projects, type Project, type Tile } from '../data/projects';
+import { person } from '../data/site';
+import { assetSize, releaseTitle, repo } from '../lib/github';
+import { formatDate, formatMonth, formatSize, version } from '../lib/format';
+import { ui, url, type Lang } from '../i18n/ui';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+}
+
+const { project: p, lang } = Astro.props;
+const t = ui[lang];
+const gh = repo(p.slug);
+const latest = gh.latest;
+const license = gh.license ?? p.statedLicense ?? null;
+
+const tileLabel: Record<Tile['k'], string> = {
+  platform: t.platform,
+  installer: t.installer,
+  downloadSize: t.downloadSize,
+  program: t.program,
+  requires: t.requires,
+  installation: t.installation,
+  runtime: t.runtime,
+  license: t.license,
+  releases: t.releases,
+};
+
+function tileValue(tile: Tile): string | null {
+  switch (tile.k) {
+    case 'platform':
+      return p.platform[lang];
+    case 'installer':
+    case 'downloadSize': {
+      const size = assetSize(p.slug, tile.asset);
+      return size ? formatSize(lang, size) : null;
+    }
+    case 'program':
+    case 'requires':
+      return tile.v;
+    case 'installation':
+      return t.notNeeded;
+    case 'runtime':
+      return t.included;
+    case 'license':
+      return license;
+    case 'releases':
+      return String(gh.releaseCount);
+  }
+}
+
+const tiles = p.tiles.map((tile) => ({ k: tileLabel[tile.k], v: tileValue(tile) })).filter((x) => x.v !== null);
+const meta = [latest && version(latest.tag), latest && formatDate(lang, latest.date), p.platform[lang], license && t.licenseName(license)].filter(Boolean).join(' · ');
+const title = latest ? releaseTitle(latest) : null;
+const others = projects.filter((o) => o.slug !== p.slug);
+---
+
+<Base lang={lang} title={`${p.name} — ${person.name}`} description={t.metaProject(p.name, p.tagline[lang])} path={`projects/${p.slug}`} accent={p.color}>
+  <section class="p-hero" aria-labelledby="p-title" data-starfield data-animated>
+    <Starfield />
+    <div class="nebula" aria-hidden="true"></div>
+    <div class="vf" aria-hidden="true"><i></i><i></i></div>
+
+    <div class="wrap">
+      <p class="crumbs"><a href={`${url(lang)}#projects`}>{t.projects}</a><span aria-hidden="true">/</span><span>{p.name}</span></p>
+      <IconStage project={p} size="xl" />
+      <h1 class="p-title" id="p-title">{p.name}</h1>
+      <p class="p-tl">{p.tagline[lang]}</p>
+      <p class="p-meta">{meta}</p>
+      <div class:list={['ctas', p.shots.length === 0 && 'last']}>
+        <a class="btn primary brk" href={`${gh.url}/releases/latest`}><Icon name="download" />{t.downloadFor(p.downloadFor)}</a>
+        <a class="btn brk" href={gh.url}><Icon name="code" />{t.source}</a>
+      </div>
+      {p.shots.length > 0 && <Gallery project={p} lang={lang} />}
+    </div>
+  </section>
+
+  <section class="section" id="overview" aria-labelledby="overview-title" data-animated>
+    <div class="wrap">
+      <SectionHead eyebrow={t.overviewEyebrow} title={t.overviewTitle} id="overview-title" lede={p.intro[lang]} />
+      <div class="feat-grid">
+        {
+          p.features.map((f, i) => (
+            <article class="panel brk feat reveal" style={i % 3 ? `--d: ${(i % 3) * 0.08}s` : undefined}>
+              <span class="ico" aria-hidden="true"><Glyph name={f.glyph} /></span>
+              <h3>{f.title[lang]}</h3>
+              <p>{f.text[lang]}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="details" aria-labelledby="details-title" data-animated>
+    <div class="wrap">
+      <SectionHead eyebrow={t.detailsEyebrow} title={t.detailsTitle} id="details-title" />
+      <div class="specs" style={`--n: ${tiles.length}`}>
+        {
+          tiles.map((tile, i) => (
+            <div class="panel brk spec reveal" style={i ? `--d: ${i * 0.06}s` : undefined}>
+              <span class="k">{tile.k}</span>
+              <span class="v">{tile.v}</span>
+            </div>
+          ))
+        }
+      </div>
+      <div class="two">
+        <section class="panel brk dpanel reveal" aria-labelledby="req-title">
+          <h3 id="req-title">{t.requirements}</h3>
+          {p.requirements.map((r) => <p>{r[lang]}</p>)}
+        </section>
+        <section class="panel brk dpanel reveal" style="--d: .1s" aria-labelledby="stack-title">
+          <h3 id="stack-title">{t.builtWith}</h3>
+          <ul class="tags center">
+            {p.stack.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+      </div>
+      {
+        latest && (
+          <div class="panel brk release reveal">
+            <span class="k">{t.latestRelease}</span>
+            <span class="v">{version(latest.tag)} · {formatDate(lang, latest.date)}</span>
+            {title && <p class="t">{title}</p>}
+            {gh.firstRelease && <p class="n">{t.releasesSince(gh.releaseCount, formatMonth(lang, gh.firstRelease))}</p>}
+            <a class="btn brk" href={`${gh.url}/releases`}>{t.allReleases}<Icon name="external" /></a>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section" id="others" aria-labelledby="others-title" data-animated>
+    <div class="wrap">
+      <SectionHead eyebrow={t.othersEyebrow} title={t.othersTitle} id="others-title" />
+      <div class="others">
+        {
+          others.map((o, i) => (
+            <a class="panel brk other reveal" href={url(lang, `projects/${o.slug}`)} style={`--acc: ${o.color}${i ? `; --d: ${i * 0.06}s` : ''}`}>
+              <AppIcon project={o} size={60} />
+              <b>{o.name}</b>
+              <span>{o.short[lang]}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

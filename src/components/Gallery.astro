@@ -1,0 +1,49 @@
+---
+// Screenshots of a project page: one large frame and, with more than one, tabs with thumbnails.
+import { Image } from 'astro:assets';
+import type { Project } from '../data/projects';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+}
+
+const { project: p, lang } = Astro.props;
+const t = ui[lang];
+const tabs = p.shots.length > 1;
+const contain = p.shotFit === 'contain';
+---
+
+<div class:list={['gallery', tabs && 'auto']} data-tabs={tabs ? '' : undefined}>
+  <div class:list={['frame', 'screen', 'brk', contain && 'contain']} id={`screen-${p.slug}`} role={tabs ? 'tabpanel' : undefined} aria-label={tabs ? t.screenshots : undefined}>
+    {
+      p.shots.map((s, i) =>
+        contain ? (
+          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[480, 800, Math.min(s.src.width, 1200)]} sizes="(min-width: 1248px) 760px, 70vw" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
+        ) : (
+          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[640, 960, 1280, 1600, 2000]} sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
+        ),
+      )
+    }
+  </div>
+  {
+    tabs ? (
+      <div class="shots" role="tablist" aria-label={t.chooseShot}>
+        {p.shots.map((s, i) => (
+          <button class="shot-btn" type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`screen-${p.slug}`} tabindex={i === 0 ? 0 : -1}>
+            <Image src={s.src} widths={[320, 480]} sizes="(min-width: 1248px) 380px, 30vw" alt="" loading="lazy" />
+            <span class="bar-p"><i /></span>
+            {s.caption[lang]}
+          </button>
+        ))}
+      </div>
+    ) : (
+      <p class="caps">{p.shots[0].caption[lang]}</p>
+    )
+  }
+</div>
+
+<script>
+  import '../scripts/gallery';
+</script>

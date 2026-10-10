@@ -1,0 +1,62 @@
+---
+// Orbital system of the home page: the projects orbit a central planet inside a rotating reticle.
+import AppIcon from './AppIcon.astro';
+import { projectBySlug, type Project } from '../data/projects';
+import { url, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// From the outermost ring inwards. On each ring the first project starts on the far side,
+// the second on the near side; --pd staggers the radar pings of the icons.
+const rings: { cls: string; planets: { slug: string; ping: string }[] }[] = [
+  { cls: 'r3', planets: [{ slug: 'inlay', ping: '.6s' }, { slug: 'cove', ping: '3s' }] },
+  { cls: 'r2', planets: [{ slug: 'prism', ping: '1.2s' }, { slug: 'argus', ping: '3.6s' }] },
+  { cls: 'r1', planets: [{ slug: 'orbit', ping: '0s' }, { slug: 'pulse', ping: '2.4s' }] },
+];
+const get = (slug: string) => projectBySlug(slug) as Project;
+---
+
+<div class="system">
+  <span class="xline" aria-hidden="true"></span>
+  <svg class="reticle" viewBox="0 0 400 400" aria-hidden="true">
+    <defs>
+      <linearGradient id="rt-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#4c8dff"></stop>
+        <stop offset="1" stop-color="#b388ff"></stop>
+      </linearGradient>
+    </defs>
+    <g class="rt-1"><circle cx="200" cy="200" r="194" fill="none" stroke="rgba(169,191,255,.34)" stroke-width="6" stroke-dasharray="1 9.16"></circle></g>
+    <g class="rt-2"><circle cx="200" cy="200" r="178" fill="none" stroke="rgba(169,191,255,.26)" stroke-dasharray="54 16 6 16"></circle></g>
+    <g class="rt-3"><circle cx="200" cy="200" r="178" fill="none" stroke="url(#rt-grad)" stroke-width="2" stroke-linecap="round" stroke-dasharray="90 1028.4"></circle></g>
+    <circle cx="200" cy="200" r="162" fill="none" stroke="rgba(169,191,255,.15)"></circle>
+    <g fill="rgba(169,191,255,.7)">
+      <path d="M194 0h12l-6 9z"></path><path d="M194 400h12l-6-9z"></path><path d="M0 194v12l9-6z"></path><path d="M400 194v12l-9-6z"></path>
+    </g>
+  </svg>
+  <div class="plane">
+    {
+      rings.map((ring) => (
+        <div class:list={['ring', ring.cls]}>
+          <div class="carrier">
+            {ring.planets.map(({ slug, ping }, i) => {
+              const p = get(slug);
+              return (
+                <a class:list={['planet', i === 1 && 'b', p.main && 'main']} href={url(lang, `projects/${slug}`)} style={`--acc: ${p.color}; --pd: ${ping}`}>
+                  <span class="pi">
+                    <AppIcon project={p} size={p.main ? 72 : 56} loading="eager" />
+                  </span>
+                  <span class="tag">{p.name}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ))
+    }
+    <div class="core" aria-hidden="true"><div class="sun"></div></div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+---
+import Glyph from './Glyph.astro';
+import { experience } from '../data/site';
+import { formatMonth } from '../lib/format';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+// Time line of each job, from its first month to its end (for the current job, to the day of the
+// build), with a mark where every new year begins.
+const month = (ym: string) => Date.parse(`${ym}-01T00:00:00Z`);
+const now = Date.now();
+const jobs = experience.map((job) => {
+  const from = month(job.start);
+  const to = job.end ? month(job.end) : now;
+  const years: { year: number; at: string }[] = [];
+  for (let y = new Date(from).getUTCFullYear() + 1; y <= new Date(to).getUTCFullYear(); y++) {
+    years.push({ year: y, at: `${(((Date.UTC(y, 0, 1) - from) / (to - from)) * 100).toFixed(2)}%` });
+  }
+  return { job, years };
+});
+---
+
+<section class="panel brk apanel xp reveal" aria-labelledby="xp-title">
+  <h3 id="xp-title">{t.experience}</h3>
+  {
+    jobs.map(({ job, years }) => (
+      <div class="xp-job">
+        <div class="xp-main">
+          <h4 class="xp-role">{job.role[lang]}</h4>
+          <p class="xp-org">{job.org}</p>
+          <p class="xp-sector">{job.sector[lang]}</p>
+          <div class="xp-time">
+            <p class="xp-ends">
+              <span>{formatMonth(lang, `${job.start}-01`)}</span>
+              <span class="sr"> – </span>
+              {job.end ? <span>{formatMonth(lang, `${job.end}-01`)}</span> : <span class="now">{t.today}</span>}
+            </p>
+            <div class="xp-bar" aria-hidden="true">
+              <i class="xp-fill"></i>
+              {years.map((y) => (
+                <span class="xp-year" style={`--at: ${y.at}`}>
+                  <b>{y.year}</b>
+                </span>
+              ))}
+              {!job.end && <i class="xp-dot"></i>}
+            </div>
+          </div>
+        </div>
+        <div class="xp-side">
+          <span class="k">{t.areas}</span>
+          <ul class="xp-areas">
+            {job.areas.map((a, i) => (
+              <li style={`--i: ${i}`}>
+                <span class="xp-ico">
+                  <Glyph name={a.glyph} />
+                </span>
+                {a.text[lang]}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ))
+  }
+</section>

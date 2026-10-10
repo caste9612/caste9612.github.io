@@ -1,0 +1,24 @@
+---
+// A project icon at a fixed size, raster icons also at double density.
+import { Image } from 'astro:assets';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  size: number;
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { project, size, class: className, loading = 'lazy' } = Astro.props;
+const raster = project.icon.format !== 'svg';
+const classes = [className, project.squareIcon && 'sq'].filter(Boolean).join(' ') || undefined;
+---
+
+{
+  raster ? (
+    <Image class={classes} src={project.icon} width={size} height={size} densities={[1, 2]} alt="" loading={loading} />
+  ) : (
+    <Image class={classes} src={project.icon} width={size} height={size} alt="" loading={loading} />
+  )
+}

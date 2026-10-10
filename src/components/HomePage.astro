@@ -1,0 +1,171 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Starfield from './Starfield.astro';
+import HeroSystem from './HeroSystem.astro';
+import Ticker from './Ticker.astro';
+import SectionHead from './SectionHead.astro';
+import ProjectMain from './ProjectMain.astro';
+import ProjectSmall from './ProjectSmall.astro';
+import Icon from './Icon.astro';
+import Experience from './Experience.astro';
+import Glyph from './Glyph.astro';
+import photo from '../assets/about/photo.jpg';
+import { mainProjects, otherProjects, projects } from '../data/projects';
+import { person, about, education, skills } from '../data/site';
+import { publicRepos, repo } from '../lib/github';
+import { formatDate, version } from '../lib/format';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+const newest = projects
+  .map((p) => ({ name: p.name, latest: repo(p.slug).latest }))
+  .filter((x) => x.latest)
+  .sort((a, b) => b.latest!.date.localeCompare(a.latest!.date))[0];
+
+// The email address goes into the page reversed and in base64, never whole: src/scripts/contact.ts
+// puts it back together when the visitor clicks the button.
+const mail = btoa([...person.email.join('@')].reverse().join(''));
+---
+
+<Base lang={lang} title={person.name} description={t.metaHome} path="">
+  <section class="hero" aria-labelledby="hero-name" data-starfield data-parallax data-animated>
+    <Starfield />
+    <div class="nebula" aria-hidden="true"></div>
+    <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1 class="name" id="hero-name"><span>Antonio</span> <span>Castellucci</span></h1>
+        <p class="role" data-type>{t.heroRole}</p>
+        <p class="lede">{t.heroLede}</p>
+        <div class="ctas">
+          <a class="btn primary brk" href="#projects">{t.ctaProjects}<Icon name="arrowDown" /></a>
+          <a class="btn brk" href="#contact">{t.ctaContact}</a>
+        </div>
+      </div>
+
+      <HeroSystem lang={lang} />
+
+      <div class="readouts">
+        <p class="ro"><span class="k">{t.roLocation}</span><span class="v">{person.coordinates}</span></p>
+        {
+          newest?.latest && (
+            <p class="ro r">
+              <span class="k">{t.roLatest}</span>
+              <span class="v">{newest.name} {version(newest.latest.tag)} · {formatDate(lang, newest.latest.date)}</span>
+            </p>
+          )
+        }
+      </div>
+    </div>
+
+    <span class="scroll-cue" aria-hidden="true"></span>
+  </section>
+
+  <Ticker lang={lang} />
+
+  <section id="projects" class="section" aria-labelledby="projects-title" data-animated>
+    <div class="wrap">
+      <SectionHead eyebrow={t.projEyebrow} title={t.projTitle} id="projects-title" lede={t.projLede} />
+      <div class="main-grid">
+        {mainProjects.map((p, i) => <ProjectMain project={p} lang={lang} delay={i ? '.12s' : undefined} />)}
+      </div>
+      <div class="small-grid">
+        {otherProjects.map((p, i) => <ProjectSmall project={p} lang={lang} delay={i ? `${i * 0.08}s` : undefined} />)}
+      </div>
+      <div class="repos brk reveal">
+        <span class="repos-mark" aria-hidden="true"><Icon name="github" /></span>
+        {publicRepos && <p>{t.repos(publicRepos)}</p>}
+        <a class="btn brk" href={person.githubRepos}>github.com/caste9612<Icon name="external" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section" style="--gy: 24%; --gt: 4%" aria-labelledby="about-title" data-animated>
+    <div class="wrap">
+      <SectionHead eyebrow={t.aboutEyebrow} title={t.aboutTitle} id="about-title" />
+      <div class="about-head reveal">
+        <figure class="photo brk">
+          <div class="ph"><Image src={photo} width={168} densities={[1, 1.66]} alt={person.name} /></div>
+        </figure>
+        {about.paragraphs.map((p) => <p>{p[lang]}</p>)}
+      </div>
+
+      <div class="about-cols">
+        <Experience lang={lang} />
+
+        <section class="panel brk apanel edu-panel reveal" style="--d: .1s" aria-labelledby="edu-title">
+          <h3 id="edu-title">{t.education}</h3>
+          <ol class="edu">
+            {
+              education.map((e) => (
+                <li>
+                  <span class="deg">{e.degree[lang]}</span>
+                  <p class="org">{e.school[lang]}</p>
+                  <p class="when">
+                    {e.from} – {e.to}
+                  </p>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        <section class="panel brk apanel reveal" style="--d: .2s" aria-labelledby="skills-title">
+          <h3 id="skills-title">{t.skills}</h3>
+          {
+            skills.map((s) => (
+              <div class="skill">
+                <span class="k">{s.group[lang]}</span>
+                <ul class="tags">
+                  {s.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            ))
+          }
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact" aria-labelledby="contact-title" data-starfield data-animated>
+    <Starfield />
+    <div class="wrap reveal">
+      <p class="eyebrow">{t.contactEyebrow}</p>
+      <h2 class="sec-title" id="contact-title">{t.contactTitle}</h2>
+      <p class="contact-text">{t.contactText}</p>
+      <button type="button" class="mail brk" data-mail={mail}>
+        <Icon name="mail" />
+        <span>{t.showEmail}</span>
+      </button>
+      <template id="mail-open">
+        <div class="mail brk open">
+          <Icon name="mail" />
+          <a class="mail-addr"></a>
+          <button type="button" class="mail-copy" aria-label={t.copyEmail} title={t.copyEmail} data-copied={t.copied}>
+            <span class="i-copy"><Glyph name="copy" /></span>
+            <span class="i-done"><Glyph name="check" /></span>
+          </button>
+          <span class="sr" aria-live="polite"></span>
+        </div>
+      </template>
+      <noscript><p class="mail-nojs">{t.emailNoJs}</p></noscript>
+      <div class="contact-links">
+        <a class="btn brk" href={person.linkedin}><Icon name="linkedin" />LinkedIn</a>
+        <a class="btn brk" href={person.github}><Icon name="github" />GitHub</a>
+      </div>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/contact';
+</script>

@@ -1,0 +1,36 @@
+---
+// A strip with the latest release of every project, newest first, scrolling slowly.
+import AppIcon from './AppIcon.astro';
+import { projects } from '../data/projects';
+import { repo } from '../lib/github';
+import { formatDate, version } from '../lib/format';
+import { ui, url, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const items = projects
+  .map((p) => ({ p, latest: repo(p.slug).latest }))
+  .filter((x): x is { p: (typeof projects)[number]; latest: NonNullable<typeof x.latest> } => x.latest !== null)
+  .sort((a, b) => b.latest.date.localeCompare(a.latest.date));
+---
+
+<div class="ticker" role="region" aria-label={ui[lang].tickerLabel} data-animated>
+  {
+    [false, true].map((copy) => (
+      <ul class="track" aria-hidden={copy ? 'true' : undefined}>
+        {items.map(({ p, latest }) => (
+          <li>
+            <a href={url(lang, `projects/${p.slug}`)} tabindex={copy ? -1 : undefined}>
+              <AppIcon project={p} size={24} />
+              <b>{p.name}</b>
+              {version(latest.tag)} · {formatDate(lang, latest.date)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ))
+  }
+</div>

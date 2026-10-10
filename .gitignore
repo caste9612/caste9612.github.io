@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# kept locally, not published: design mockups (they include private material), editor and
+# assistant settings
+mockups/
+.orbit/
+.claude/

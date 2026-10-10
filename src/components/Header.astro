@@ -1,0 +1,57 @@
+---
+import { ui, url, langs, type Lang } from '../i18n/ui';
+import { person } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const t = ui[lang];
+const isHome = path === '';
+const home = url(lang);
+// The 404 page exists in one copy only: its language switch leads to the home pages.
+const langHref = (l: Lang) => (path === '404' ? url(l) : url(l, path));
+// On the home page the sections are anchors; elsewhere they point back to the home page.
+const section = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
+const inProjects = path.startsWith('projects/');
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href={home}>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <defs>
+          <radialGradient id="g-brand" cx=".5" cy=".3" r=".8">
+            <stop offset="0" stop-color="#a9c6ff"></stop>
+            <stop offset=".45" stop-color="#4c8dff"></stop>
+            <stop offset="1" stop-color="#6a4cf0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="12" cy="12" r="10.5" fill="none" stroke="rgba(170,185,255,.35)" stroke-dasharray="1.6 2.6"></circle>
+        <circle cx="12" cy="12" r="6" fill="url(#g-brand)"></circle>
+        <circle cx="19.4" cy="4.6" r="1.6" fill="#e9ecf8"></circle>
+      </svg>
+      <span>{person.name}</span>
+    </a>
+    <nav class="nav" id="nav" aria-label={t.navLabel}>
+      <a href={section('projects')} aria-current={inProjects ? 'true' : undefined}>{t.navProjects}</a>
+      <a href={section('about')}>{t.navAbout}</a>
+      <a href={section('contact')}>{t.navContact}</a>
+    </nav>
+    <div class="lang" role="group" aria-label={t.langLabel}>
+      {
+        langs.map((l, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true">|</span>}
+            <a href={langHref(l)} lang={l} hreflang={l} aria-current={l === lang ? 'true' : undefined}>
+              {l.toUpperCase()}
+            </a>
+          </>
+        ))
+      }
+    </div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label={t.menu}><i aria-hidden="true"></i></button>
+  </div>
+</header>

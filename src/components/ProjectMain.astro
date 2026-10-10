@@ -1,0 +1,53 @@
+---
+// Large card of a main project on the home page: icon, name, screenshot(s), text and buttons.
+import { Image } from 'astro:assets';
+import IconStage from './IconStage.astro';
+import Icon from './Icon.astro';
+import type { Project } from '../data/projects';
+import { repo } from '../lib/github';
+import { formatDate, version } from '../lib/format';
+import { ui, url, type Lang } from '../i18n/ui';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+  delay?: string;
+}
+
+const { project: p, lang, delay } = Astro.props;
+const t = ui[lang];
+const gh = repo(p.slug);
+const page = url(lang, `projects/${p.slug}`);
+const slideshow = p.shots.length > 1;
+---
+
+<article class="panel brk mcard reveal" id={`p-${p.slug}`} style={`--acc: ${p.color}${delay ? `; --d: ${delay}` : ''}`} aria-labelledby={`t-${p.slug}`}>
+  <IconStage project={p} />
+  <h3 class="pname" id={`t-${p.slug}`}><a href={page}>{p.name}</a></h3>
+  {gh.latest && <p class="ver">{version(gh.latest.tag)} · {formatDate(lang, gh.latest.date)}</p>}
+  <p class="tl">{p.tagline[lang]}</p>
+  {
+    p.shots.length > 0 && (
+      <div class="shot">
+        <div class:list={['frame', p.shotFit === 'contain' && 'contain', slideshow && 'slides']}>
+          {p.shots.map((s) =>
+            p.shotFit === 'contain' ? (
+              <Image class="slide" src={s.src} widths={[320, s.src.width]} sizes="300px" alt={s.alt[lang]} />
+            ) : (
+              <Image class="slide" src={s.src} widths={[480, 720, 1000, 1400]} sizes="(min-width: 980px) 520px, calc(100vw - 64px)" alt={s.alt[lang]} />
+            ),
+          )}
+          {slideshow && <span class="dots" aria-hidden="true">{p.shots.map(() => <i />)}</span>}
+        </div>
+        <p class:list={['caps', slideshow && 'cycle']} aria-hidden="true">
+          {p.shots.map((s) => <span>{s.caption[lang]}</span>)}
+        </p>
+      </div>
+    )
+  }
+  {p.summary && <p class="tx">{p.summary[lang]}</p>}
+  <div class="actions">
+    <a class="btn primary brk" href={`${gh.url}/releases/latest`}><Icon name="download" />{t.downloadFor(p.downloadFor)}</a>
+    <a class="btn brk" href={gh.url}><Icon name="code" />{t.source}</a>
+  </div>
+</article>

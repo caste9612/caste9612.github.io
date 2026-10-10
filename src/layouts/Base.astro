@@ -1,0 +1,67 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ui, url, otherLang, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** path of the page without the language prefix: '' for the home, 'projects/orbit' for a project */
+  path: string;
+  /** accent colour of the page (project pages) */
+  accent?: string;
+  /** links to the same page in the other language (not for the 404 page) */
+  alternates?: boolean;
+}
+
+const { lang, title, description, path, accent, alternates = true } = Astro.props;
+const t = ui[lang];
+const alt = otherLang(lang);
+// Absolute URLs need the domain (`site` in astro.config.mjs); until then the links stay relative.
+const href = (l: Lang) => (Astro.site ? new URL(url(l, path), Astro.site).href : url(l, path));
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#05060a" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {Astro.site && alternates && <link rel="canonical" href={href(lang)} />}
+    {
+      alternates && (
+        <>
+          <link rel="alternate" hreflang={lang} href={href(lang)} />
+          <link rel="alternate" hreflang={alt} href={href(alt)} />
+          <link rel="alternate" hreflang="x-default" href={href('en')} />
+        </>
+      )
+    }
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === 'it' ? 'it_IT' : 'en_GB'} />
+    <Font cssVariable="--font-display" preload={[{ weight: 500 }]} />
+    <Font cssVariable="--font-body" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-mono" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body id="top" style={accent ? `--acc: ${accent}` : undefined}>
+    <a class="skip" href="#main">{t.skip}</a>
+    <Header lang={lang} path={path} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

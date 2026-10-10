@@ -1,0 +1,17 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { person } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = ui[Astro.props.lang];
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© {year} {person.name} · {t.footer}</p>
+  </div>
+</footer>

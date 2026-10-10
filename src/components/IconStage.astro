@@ -1,0 +1,31 @@
+---
+// The app icon floating inside rotating rings, tinted with the project colour (--acc).
+import AppIcon from './AppIcon.astro';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  size?: 'sm' | 'md' | 'xl';
+}
+
+const { project, size = 'md' } = Astro.props;
+const px = { sm: 80, md: 112, xl: 150 }[size];
+const g =
+  size === 'xl'
+    ? { h: 290, cy: 145, r: [92, 112, 134], ticks: '1 9.77', arc: '70 633.7' }
+    : { h: 240, cy: 120, r: [74, 92, 110], ticks: '1 9.04', arc: '60 518' };
+---
+
+<div class:list={['stage', size !== 'md' && size]} aria-hidden="true">
+  <span class="halo"></span>
+  <svg class="rings" viewBox={`0 0 400 ${g.h}`}>
+    <circle cx="200" cy={g.cy} r={g.r[0]} fill="none" stroke="currentColor" stroke-opacity=".3"></circle>
+    <g class="rg-a"><circle cx="200" cy={g.cy} r={g.r[1]} fill="none" stroke="currentColor" stroke-opacity=".55" stroke-width="4" stroke-dasharray={g.ticks}></circle></g>
+    {size !== 'sm' && (
+      <g class="rg-b"><circle cx="200" cy={g.cy} r={g.r[2]} fill="none" stroke="currentColor" stroke-opacity=".32" stroke-dasharray="46 14 6 14"></circle></g>
+    )}
+    <g class="rg-c"><circle cx="200" cy={g.cy} r={g.r[1]} fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray={g.arc}></circle></g>
+    <g class="rg-d"><circle cx="200" cy={g.cy - g.r[2]} r="3.2" fill="currentColor"></circle></g>
+  </svg>
+  <AppIcon class="app" project={project} size={px} loading={size === 'xl' ? 'eager' : 'lazy'} />
+</div>

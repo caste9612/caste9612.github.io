@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { person } from '../data/site';
+import { ui, url } from '../i18n/ui';
+
+const en = ui.en;
+const it = ui.it;
+---
+
+<Base lang="en" title={`${en.notFoundTitle} — ${person.name}`} description={en.notFoundText} path="404" alternates={false}>
+  <section class="lost">
+    <div class="wrap">
+      <h1>{en.notFoundTitle}</h1>
+      <p>{en.notFoundText}<br /><span lang="it">{it.notFoundText}</span></p>
+      <div class="ctas">
+        <a class="btn primary brk" href={url('en')}>{en.backHome}</a>
+        <a class="btn brk" href={url('it')} lang="it">{it.backHome}</a>
+      </div>
+    </div>
+  </section>
+</Base>
