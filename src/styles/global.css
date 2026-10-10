@@ -301,6 +301,13 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .pname { margin: 0; font: 500 clamp(1.7rem, 2.5vw, 2.2rem)/1.1 var(--f-display); }
 .pname a { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 6px; transition: text-decoration-color .25s; }
 .pname a:hover { text-decoration-color: color-mix(in srgb, var(--acc) 70%, transparent); }
+/* the link of the name covers the whole card; buttons and links stay above it */
+.mcard .pname a::after, .scard .pname a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.mcard .actions .btn, .scard .links a { z-index: 2; }
+@supports selector(:has(a)) {
+  .mcard:has(.pname a:focus-visible), .scard:has(.pname a:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .mcard .pname a:focus-visible, .scard .pname a:focus-visible { outline: none; }
+}
 .ver { margin: 10px 0 0; font: 500 12.5px/1 var(--f-mono); letter-spacing: .05em; color: var(--muted); }
 .tl { margin: 18px 0 0; max-width: 44ch; font: 500 1.15rem/1.45 var(--f-body); color: var(--text); }
 .tx { margin: 22px 0 0; max-width: 52ch; color: var(--soft); }
@@ -333,7 +340,7 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .scard .pname { font-size: 1.3rem; }
 .scard .tl { margin-top: 14px; font-size: 1rem; font-weight: 400; color: var(--soft); max-width: 26ch; }
 .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-top: auto; padding-top: 18px; }
-.links a { display: inline-flex; align-items: center; gap: 7px; padding: 6px 2px; font: 500 14.5px/1 var(--f-body); color: color-mix(in srgb, var(--acc) 62%, white); }
+.links a { position: relative; display: inline-flex; align-items: center; gap: 7px; padding: 6px 2px; font: 500 14.5px/1 var(--f-body); color: color-mix(in srgb, var(--acc) 62%, white); }
 .links a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .links svg { width: 15px; height: 15px; flex: none; }
 

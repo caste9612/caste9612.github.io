@@ -32,6 +32,8 @@ interface Strings {
   downloadFor: (platform: string) => string;
   download: string;
   source: string;
+  details: string;
+  detailsOf: (name: string) => string;
   repos: (n: number) => string;
   aboutEyebrow: string;
   aboutTitle: string;
@@ -103,6 +105,8 @@ export const ui: Record<Lang, Strings> = {
     downloadFor: (platform) => `Download for ${platform}`,
     download: 'Download',
     source: 'Source code',
+    details: 'Details',
+    detailsOf: (name) => `Details about ${name}`,
     repos: (n) => `${n} public repositories on GitHub, including university projects.`,
     aboutEyebrow: '02 — About',
     aboutTitle: 'About',
@@ -172,6 +176,8 @@ export const ui: Record<Lang, Strings> = {
     downloadFor: (platform) => `Scarica per ${platform}`,
     download: 'Scarica',
     source: 'Codice sorgente',
+    details: 'Dettagli',
+    detailsOf: (name) => `Dettagli su ${name}`,
     repos: (n) => `${n} repository pubblici su GitHub, compresi i progetti dell'università.`,
     aboutEyebrow: '02 — Chi sono',
     aboutTitle: 'Chi sono',

@@ -1,5 +1,6 @@
 ---
-// Small card of a project on the home page: icon, name, version, one line and two links.
+// Small card of a project on the home page: icon, name, version, one line and two links. The whole
+// card leads to the project page.
 import IconStage from './IconStage.astro';
 import Icon from './Icon.astro';
 import type { Project } from '../data/projects';
@@ -16,15 +17,16 @@ interface Props {
 const { project: p, lang, delay } = Astro.props;
 const t = ui[lang];
 const gh = repo(p.slug);
+const page = url(lang, `projects/${p.slug}`);
 ---
 
 <article class="panel brk scard reveal" id={`p-${p.slug}`} style={`--acc: ${p.color}${delay ? `; --d: ${delay}` : ''}`} aria-labelledby={`t-${p.slug}`}>
   <IconStage project={p} size="sm" />
-  <h3 class="pname" id={`t-${p.slug}`}><a href={url(lang, `projects/${p.slug}`)}>{p.name}</a></h3>
+  <h3 class="pname" id={`t-${p.slug}`}><a href={page}>{p.name}</a></h3>
   {gh.latest && <p class="ver">{version(gh.latest.tag)} · {formatDate(lang, gh.latest.date)}</p>}
   <p class="tl">{p.tagline[lang]}</p>
   <div class="links">
+    <a href={page} aria-label={t.detailsOf(p.name)}>{t.details}<Icon name="arrowRight" /></a>
     <a href={`${gh.url}/releases/latest`}><Icon name="download" />{t.download}</a>
-    <a href={gh.url}><Icon name="code" />{t.source}</a>
   </div>
 </article>

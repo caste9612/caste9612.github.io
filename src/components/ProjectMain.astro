@@ -1,5 +1,6 @@
 ---
-// Large card of a main project on the home page: icon, name, screenshot(s), text and buttons.
+// Large card of a main project on the home page: icon, name, screenshot(s), text and buttons. The
+// whole card leads to the project page.
 import { Image } from 'astro:assets';
 import IconStage from './IconStage.astro';
 import Icon from './Icon.astro';
@@ -47,7 +48,7 @@ const slideshow = p.shots.length > 1;
   }
   {p.summary && <p class="tx">{p.summary[lang]}</p>}
   <div class="actions">
-    <a class="btn primary brk" href={`${gh.url}/releases/latest`}><Icon name="download" />{t.downloadFor(p.downloadFor)}</a>
-    <a class="btn brk" href={gh.url}><Icon name="code" />{t.source}</a>
+    <a class="btn primary brk" href={page} aria-label={t.detailsOf(p.name)}>{t.details}<Icon name="arrowRight" /></a>
+    <a class="btn brk" href={`${gh.url}/releases/latest`}><Icon name="download" />{t.downloadFor(p.downloadFor)}</a>
   </div>
 </article>
