@@ -104,7 +104,7 @@ export const ui: Record<Lang, Strings> = {
     projEyebrow: '01 — Projects',
     projTitle: 'Open-source software',
     projLede:
-      "The software I write at work is confidential and I can't show it. These are tools I built for problems I run into while working: each page says what the problem was and how the tool solves it. I develop them together with AI coding tools such as Claude Code, which make it possible to finish programs that would otherwise have stayed a sketch. Free to download, with source code on GitHub.",
+      "These are tools with which I solved problems in my own workflow, outside the software of the company I work for, which is why I can show and share them. Each page says what the problem was and how the tool solves it. I develop them with AI coding tools such as Claude Code, which make it possible to finish programs that would otherwise have stayed a sketch. Free to download, with source code on GitHub.",
     downloadFor: (platform) => `Download for ${platform}`,
     download: 'Download',
     source: 'Source code',
@@ -178,7 +178,7 @@ export const ui: Record<Lang, Strings> = {
     projEyebrow: '01 — Progetti',
     projTitle: 'Software open source',
     projLede:
-      "Il software che scrivo al lavoro è riservato e non posso mostrarlo. Questi sono strumenti che ho costruito per problemi che incontro lavorando: ogni pagina dice qual era il problema e come lo risolve. Li sviluppo insieme a strumenti di programmazione con l'AI come Claude Code, che permettono di finire programmi che prima sarebbero rimasti abbozzi. Si scaricano gratis e il codice è su GitHub.",
+      "Sono strumenti con cui ho risolto problemi del mio flusso di lavoro, fuori dal software dell'azienda per cui lavoro: per questo posso mostrarli e condividerli. Ogni pagina dice qual era il problema e come lo risolve. Li sviluppo con strumenti di programmazione con l'AI come Claude Code, che permettono di finire programmi che prima sarebbero rimasti abbozzi. Si scaricano gratis e il codice è su GitHub.",
     downloadFor: (platform) => `Scarica per ${platform}`,
     download: 'Scarica',
     source: 'Codice sorgente',
