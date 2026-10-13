@@ -4,17 +4,28 @@ import type { GlyphName } from '../lib/glyphs';
 
 import orbitIcon from '../assets/projects/orbit/icon.svg';
 import orbitEditor from '../assets/projects/orbit/editor.webp';
-import orbitDocs from '../assets/projects/orbit/docs.webp';
 import orbitActivity from '../assets/projects/orbit/activity.webp';
+import orbitGit from '../assets/projects/orbit/git.webp';
+import orbitDocs from '../assets/projects/orbit/docs.webp';
+import orbitSettings from '../assets/projects/orbit/settings.webp';
 import pulseIcon from '../assets/projects/pulse/icon.png';
-import pulseWidget from '../assets/projects/pulse/widget.webp';
+import pulseDark from '../assets/projects/pulse/dark.webp';
+import pulseLight from '../assets/projects/pulse/light.webp';
 import prismIcon from '../assets/projects/prism/icon.png';
 import prismDashboard from '../assets/projects/prism/dashboard.webp';
 import prismSearch from '../assets/projects/prism/search.webp';
 import prismBackup from '../assets/projects/prism/backup.webp';
 import argusIcon from '../assets/projects/argus/icon.svg';
+import argusMetrics from '../assets/projects/argus/metrics.webp';
+import argusFlame from '../assets/projects/argus/flame.webp';
+import argusGuide from '../assets/projects/argus/guide.webp';
 import coveIcon from '../assets/projects/cove/icon.png';
+import covePanel from '../assets/projects/cove/panel.webp';
 import inlayIcon from '../assets/projects/inlay/icon.png';
+import inlayBoard from '../assets/projects/inlay/board.webp';
+import inlayMosaic from '../assets/projects/inlay/mosaic.webp';
+import inlaySearch from '../assets/projects/inlay/search.webp';
+import inlayMove from '../assets/projects/inlay/move.webp';
 
 export interface Feature {
   glyph: GlyphName;
@@ -62,6 +73,7 @@ export interface Project {
   stack: string[];
   /** licence stated in the README, used when GitHub does not detect a licence file */
   statedLicense?: string;
+  /** screenshots of the project page; the home page card shows the first three */
   shots: Shot[];
   /** how screenshots fill their frame: cover (wide app windows) or contain */
   shotFit: 'cover' | 'contain';
@@ -87,40 +99,40 @@ export const projects: Project[] = [
       it: "Esplora file, editor, git e un terminale integrato con Claude Code, in una piccola app desktop. I file modificati da Claude si ricaricano da soli e sono evidenziati nell'albero.",
     },
     intro: {
-      en: 'Orbit is a small desktop editor to keep next to Claude Code: it shows the whole project, edits files, handles git and runs Claude Code in an integrated terminal. It is not a full IDE: there is no language server, debugger or refactoring.',
-      it: 'Orbit è un piccolo editor desktop da tenere accanto a Claude Code: mostra tutto il progetto, modifica i file, gestisce git ed esegue Claude Code in un terminale integrato. Non è un IDE completo: non ci sono language server, debugger o refactoring.',
+      en: 'Orbit is a small desktop editor to keep next to Claude Code: it shows the whole project, edits files, handles git and runs Claude Code in an integrated terminal. Several repositories stay open as tabs in one window. It is not a full IDE: there is no language server, debugger or refactoring.',
+      it: 'Orbit è un piccolo editor desktop da tenere accanto a Claude Code: mostra tutto il progetto, modifica i file, gestisce git ed esegue Claude Code in un terminale integrato. Più repository restano aperti come schede nella stessa finestra. Non è un IDE completo: non ci sono language server, debugger o refactoring.',
     },
     features: [
       {
         glyph: 'folder',
-        title: { en: 'Files and navigation', it: 'File e navigazione' },
+        title: { en: 'Repositories and files', it: 'Repository e file' },
         text: {
-          en: "The tree shows the real file system, with git changes highlighted as they happen. Folders you don't need can be set aside on a shelf. Quick Open and full-text search.",
-          it: "L'albero mostra il file system reale, con le modifiche git evidenziate mentre avvengono. Le cartelle che non servono si mettono da parte su uno scaffale. Apertura rapida e ricerca nel testo.",
+          en: 'Each repository is a tab with its own color; a repository can also move to a window of its own. The tree shows the real file system, with git changes highlighted as they happen. Quick Open and full-text search.',
+          it: "Ogni repository è una scheda con il suo colore e può anche passare in una finestra sua. L'albero mostra il file system reale, con le modifiche git evidenziate mentre avvengono. Apertura rapida e ricerca nel testo.",
         },
       },
       {
         glyph: 'editor',
         title: { en: 'Editor', it: 'Editor' },
         text: {
-          en: 'CodeMirror 6 with about 140 languages loaded on demand, split view, Markdown and HTML preview, images and PDFs. Files changed on disk reload by themselves.',
-          it: 'CodeMirror 6 con circa 140 linguaggi caricati quando servono, vista divisa, anteprima di Markdown e HTML, immagini e PDF. I file modificati su disco si ricaricano da soli.',
+          en: 'CodeMirror 6 with about 140 languages loaded on demand, split view, Markdown and HTML preview, images and PDFs. Files changed on disk reload by themselves, and reopen where you left them.',
+          it: 'CodeMirror 6 con circa 140 linguaggi caricati quando servono, vista divisa, anteprima di Markdown e HTML, immagini e PDF. I file modificati su disco si ricaricano da soli e si riaprono dove li avevi lasciati.',
         },
       },
       {
         glyph: 'compass',
         title: { en: 'Code navigation', it: 'Navigazione nel codice' },
         text: {
-          en: 'A project symbol index built without a language server: go to definition, project symbols, base types and implementers, back and forward history.',
-          it: 'Un indice dei simboli del progetto costruito senza language server: vai alla definizione, simboli del progetto, tipi base e implementazioni, cronologia avanti e indietro.',
+          en: 'A project symbol index built without a language server: go to definition, base types and implementers, and a line above each class and function with its references and implementations.',
+          it: 'Un indice dei simboli del progetto costruito senza language server: vai alla definizione, tipi base e implementazioni, e una riga sopra ogni classe e funzione con i suoi riferimenti e le implementazioni.',
         },
       },
       {
         glyph: 'terminal',
         title: { en: 'Terminal', it: 'Terminale' },
         text: {
-          en: 'Real terminals in tabs, up to four Claude chats or shells side by side, clickable file paths and links, and terminals that pop out into their own windows.',
-          it: 'Terminali veri in schede, fino a quattro chat di Claude o shell affiancate, percorsi e link cliccabili, e terminali che si staccano in finestre proprie.',
+          en: 'Real terminals in tabs, up to four Claude chats or shells side by side, clickable file paths and links. Terminals and Claude chats come back, with their conversations, when Orbit reopens.',
+          it: 'Terminali veri in schede, fino a quattro chat di Claude o shell affiancate, percorsi e link cliccabili. Terminali e chat di Claude tornano, con le loro conversazioni, quando Orbit si riapre.',
         },
       },
       {
@@ -135,15 +147,15 @@ export const projects: Project[] = [
         glyph: 'spark',
         title: { en: 'Claude Code', it: 'Claude Code' },
         text: {
-          en: 'A Claude menu with prompt shortcuts, run configurations that Claude can write itself, a timeline of the work done in each chat, and a notice when a terminal is waiting for you.',
-          it: 'Un menu Claude con prompt pronti, configurazioni di avvio che Claude può scrivere da sé, una cronologia del lavoro fatto in ogni chat e un avviso quando un terminale ti aspetta.',
+          en: 'A timeline of the work Claude did in every repository, titled with its commits, a Claude menu with prompt shortcuts, and a notice when a chat is waiting for you.',
+          it: 'Una cronologia del lavoro fatto da Claude in ogni repository, con i titoli dei commit, un menu Claude con prompt pronti e un avviso quando una chat ti aspetta.',
         },
       },
     ],
     requirements: [
       {
-        en: 'Windows with WebView2, which comes with Windows 11. The installer is available as .exe or .msi.',
-        it: "Windows con WebView2, già presente in Windows 11. L'installer è disponibile come .exe o .msi.",
+        en: 'Windows with WebView2, which comes with Windows 11. The installer is available as .exe or .msi; new versions are then offered from GitHub and install in place with one click.',
+        it: "Windows con WebView2, già presente in Windows 11. L'installer è disponibile come .exe o .msi; poi le versioni nuove arrivano da GitHub e si installano con un clic.",
       },
       {
         en: 'The code is written to be cross-platform; builds for Linux and macOS are not published yet.',
@@ -155,31 +167,47 @@ export const projects: Project[] = [
     shots: [
       {
         src: orbitEditor,
-        caption: { en: 'Editor and terminal', it: 'Editor e terminale' },
+        caption: { en: 'Editor and Claude Code', it: 'Editor e Claude Code' },
         alt: {
-          en: 'Orbit with a file open in the editor and two Claude Code sessions in the terminal panel',
-          it: "Orbit con un file aperto nell'editor e due sessioni di Claude Code nel pannello del terminale",
+          en: 'Orbit with five repositories open: a Rust file in the editor and two Claude Code chats side by side, one showing the change it just made',
+          it: "Orbit con cinque repository aperti: un file Rust nell'editor e due chat di Claude Code affiancate, una con la modifica appena fatta",
+        },
+      },
+      {
+        src: orbitActivity,
+        caption: { en: 'Activity', it: 'Activity' },
+        alt: {
+          en: "Orbit's Activity view: the work done by Claude in five repositories, one column each, titled with the commits",
+          it: 'La vista Activity di Orbit: il lavoro fatto da Claude in cinque repository, una colonna ciascuno, con i titoli dei commit',
+        },
+      },
+      {
+        src: orbitGit,
+        caption: { en: 'Commit diff', it: 'Diff di un commit' },
+        alt: {
+          en: 'A commit opened from the Git graph, with its diff in red and green',
+          it: 'Un commit aperto dal grafo Git, con il suo diff in rosso e verde',
         },
       },
       {
         src: orbitDocs,
         caption: { en: 'Docs view', it: 'Vista Docs' },
         alt: {
-          en: "Orbit's Docs view with a Markdown file in reading mode and its outline",
-          it: 'La vista Docs di Orbit con un file Markdown in modalità lettura e il suo indice',
+          en: "Orbit's Docs view with a Markdown file in reading mode and its outline, next to the Claude chats",
+          it: 'La vista Docs di Orbit con un file Markdown in modalità lettura e il suo indice, accanto alle chat di Claude',
         },
       },
       {
-        src: orbitActivity,
-        caption: { en: 'Activity timeline', it: 'Cronologia Activity' },
+        src: orbitSettings,
+        caption: { en: 'Settings', it: 'Impostazioni' },
         alt: {
-          en: "Orbit's Activity view: a timeline of the work done across repositories",
-          it: 'La vista Activity di Orbit: la cronologia del lavoro fatto nei vari repository',
+          en: "Orbit's Settings: themes shown as thumbnails, accent colors and the installed version",
+          it: 'Le impostazioni di Orbit: i temi come miniature, i colori di accento e la versione installata',
         },
       },
     ],
     shotFit: 'cover',
-    tiles: [{ k: 'platform' }, { k: 'installer', asset: /-setup\.exe$/i }, { k: 'program', v: '~5 MB' }, { k: 'license' }],
+    tiles: [{ k: 'platform' }, { k: 'installer', asset: /-setup\.exe$/i }, { k: 'program', v: '~7 MB' }, { k: 'license' }],
   },
   {
     slug: 'pulse',
@@ -192,8 +220,8 @@ export const projects: Project[] = [
     tagline: { en: 'System monitor widget for Windows.', it: 'Widget di monitoraggio del sistema per Windows.' },
     short: { en: 'System monitor', it: 'Monitor di sistema' },
     summary: {
-      en: 'CPU, RAM, GPU, network, disk and top processes in a small window that starts with Windows and remembers its position and size.',
-      it: 'CPU, RAM, GPU, rete, disco e processi principali in una piccola finestra che parte con Windows e ricorda posizione e dimensioni.',
+      en: 'CPU with one bar per core, RAM, GPU, network, disk and top processes, in a small window that starts with Windows and remembers its position and size.',
+      it: 'CPU con una barra per core, RAM, GPU, rete, disco e processi principali, in una piccola finestra che parte con Windows e ricorda posizione e dimensioni.',
     },
     intro: {
       en: 'Pulse is a small window that stays on the desktop and shows live system metrics, each with a graph of the last 60 seconds. It can start with Windows, lives in the system tray and is designed to use as little CPU and memory as possible.',
@@ -204,16 +232,16 @@ export const projects: Project[] = [
         glyph: 'cpu',
         title: { en: 'CPU and memory', it: 'CPU e memoria' },
         text: {
-          en: 'CPU usage, clock, temperature and power; RAM in use, cache, committed memory and page file.',
-          it: 'Uso della CPU, frequenza, temperatura e consumo; RAM in uso, cache, memoria impegnata e file di paging.',
+          en: 'CPU usage, clock, temperature and power, with one bar per core that shows which processes run on it; RAM split into in use, cached and free in one bar.',
+          it: "Uso della CPU, frequenza, temperatura e consumo, con una barra per core che mostra quali processi ci girano; la RAM divisa in usata, cache e libera in un'unica barra.",
         },
       },
       {
         glyph: 'gpu',
         title: { en: 'GPU', it: 'GPU' },
         text: {
-          en: 'GPU usage, video memory, temperature, clocks and power.',
-          it: 'Uso della GPU, memoria video, temperatura, frequenze e consumo.',
+          en: 'GPU usage, video memory, temperature, clocks and power, also for integrated GPUs; NVIDIA cards are read directly from the driver.',
+          it: 'Uso della GPU, memoria video, temperatura, frequenze e consumo, anche per le GPU integrate; le schede NVIDIA si leggono direttamente dal driver.',
         },
       },
       {
@@ -236,16 +264,16 @@ export const projects: Project[] = [
         glyph: 'pin',
         title: { en: 'Always at hand', it: 'Sempre a portata di mano' },
         text: {
-          en: 'Starts with Windows, remembers its position and size, and hides in the system tray with one click.',
-          it: "Parte con Windows, ricorda posizione e dimensioni e si nasconde nell'area di notifica con un clic.",
+          en: 'Starts with Windows, remembers its position and size, moves to a corner of the screen or fits its content with one click, and hides in the system tray.',
+          it: "Parte con Windows, ricorda posizione e dimensioni, con un clic va in un angolo dello schermo o si adatta al contenuto, e si nasconde nell'area di notifica.",
         },
       },
       {
         glyph: 'chart',
         title: { en: 'Live graphs', it: 'Grafici in tempo reale' },
         text: {
-          en: 'Every metric has a graph of the last 60 seconds; fast values refresh every second, sensors every two.',
-          it: 'Ogni metrica ha il grafico degli ultimi 60 secondi; i valori veloci si aggiornano ogni secondo, i sensori ogni due.',
+          en: 'Every metric has a graph of the last 60 seconds; fast values refresh every second, sensors every two. Dark and light theme.',
+          it: 'Ogni metrica ha il grafico degli ultimi 60 secondi; i valori veloci si aggiornano ogni secondo, i sensori ogni due. Tema scuro e chiaro.',
         },
       },
     ],
@@ -255,19 +283,27 @@ export const projects: Project[] = [
         it: 'Windows 10 o 11 a 64 bit, con il .NET 9 Desktop Runtime. È disponibile anche uno zip portatile.',
       },
       {
-        en: 'CPU temperature and power need administrator rights; the installer can set Pulse to start that way at login.',
-        it: "Temperatura e consumo della CPU richiedono i permessi di amministratore; l'installer può far partire Pulse così all'accesso.",
+        en: 'CPU temperature and power need administrator rights and the PawnIO driver, the processes on each core administrator rights. The installer can set Pulse to start that way at login and install PawnIO.',
+        it: "Temperatura e consumo della CPU richiedono i permessi di amministratore e il driver PawnIO, i processi su ogni core i permessi di amministratore. L'installer può far partire Pulse così all'accesso e installare PawnIO.",
       },
     ],
-    stack: ['C#', '.NET 9', 'WPF', 'Win32', 'LibreHardwareMonitor'],
+    stack: ['C#', '.NET 9', 'WPF', 'Win32', 'ETW', 'LibreHardwareMonitor', 'NVML'],
     statedLicense: 'MIT',
     shots: [
       {
-        src: pulseWidget,
-        caption: { en: 'The widget', it: 'Il widget' },
+        src: pulseDark,
+        caption: { en: 'Dark theme', it: 'Tema scuro' },
         alt: {
-          en: 'Pulse showing CPU, RAM, GPU, network and disk with their live graphs',
-          it: 'Pulse con CPU, RAM, GPU, rete e disco e i loro grafici in tempo reale',
+          en: 'Pulse running as administrator: CPU with temperature, power and per-core bars colored by process, RAM, GPU, network, disk and top processes',
+          it: 'Pulse da amministratore: CPU con temperatura, consumo e barre per core colorate per processo, RAM, GPU, rete, disco e processi principali',
+        },
+      },
+      {
+        src: pulseLight,
+        caption: { en: 'Light theme', it: 'Tema chiaro' },
+        alt: {
+          en: 'Pulse with the light theme, with its live graphs and the processes using the most CPU and memory',
+          it: 'Pulse con il tema chiaro, con i grafici in tempo reale e i processi che usano più CPU e memoria',
         },
       },
     ],
@@ -454,7 +490,32 @@ export const projects: Project[] = [
     ],
     stack: ['Rust', 'windows-rs', 'ETW', 'wgpu', 'egui'],
     statedLicense: 'MIT',
-    shots: [],
+    shots: [
+      {
+        src: argusMetrics,
+        caption: { en: 'Metrics', it: 'Metriche' },
+        alt: {
+          en: 'Argus attached to a demo program: CPU, memory, threads, handles and I/O with their graphs, disk latency and page faults from ETW',
+          it: 'Argus collegato a un programma di prova: CPU, memoria, thread, handle e I/O con i loro grafici, latenza del disco e page fault da ETW',
+        },
+      },
+      {
+        src: argusFlame,
+        caption: { en: 'Flame graph', it: 'Flame graph' },
+        alt: {
+          en: 'The flame graph of the demo program: the worker threads and the functions that use the CPU',
+          it: 'Il flame graph del programma di prova: i thread di lavoro e le funzioni che usano la CPU',
+        },
+      },
+      {
+        src: argusGuide,
+        caption: { en: 'Guide', it: 'Guida' },
+        alt: {
+          en: "Argus's built-in guide on how to read the metrics and find a bottleneck",
+          it: 'La guida interna di Argus su come leggere le metriche e trovare un collo di bottiglia',
+        },
+      },
+    ],
     shotFit: 'contain',
     tiles: [{ k: 'platform' }, { k: 'downloadSize', asset: /win-x64\.zip$/i }, { k: 'installation', v: 'notNeeded' }, { k: 'license' }],
   },
@@ -536,7 +597,16 @@ export const projects: Project[] = [
     ],
     stack: ['Python', 'PySide6', 'FFmpeg'],
     statedLicense: 'MIT',
-    shots: [],
+    shots: [
+      {
+        src: covePanel,
+        caption: { en: 'The panel', it: 'Il pannello' },
+        alt: {
+          en: "Cove's panel with the four built-in sounds and the mini player playing one of them",
+          it: 'Il pannello di Cove con i quattro suoni inclusi e il mini player che ne riproduce uno',
+        },
+      },
+    ],
     shotFit: 'contain',
     tiles: [{ k: 'platform' }, { k: 'installer', asset: /setup.*\.exe$/i }, { k: 'runtime', v: 'included' }, { k: 'license' }],
   },
@@ -553,16 +623,16 @@ export const projects: Project[] = [
     },
     short: { en: 'Desktop replacement', it: 'Al posto del desktop' },
     intro: {
-      en: 'Inlay replaces the desktop as the place where you keep your files: they live in an archive of ordinary folders, organised by topic, and the window comes up with Alt+E over whatever is open.',
-      it: "Inlay sostituisce il desktop come posto dove tenere i file: stanno in un archivio di normali cartelle, organizzate per argomento, e la finestra compare con Alt+E sopra a tutto quello che è aperto.",
+      en: 'Inlay replaces the desktop as the place where you keep your files: they live in a vault of ordinary folders, organised in spaces, and the window comes up with Alt+E over whatever is open.',
+      it: "Inlay sostituisce il desktop come posto dove tenere i file: stanno in un archivio (il vault) di normali cartelle, organizzate in spazi, e la finestra compare con Alt+E sopra a tutto quello che è aperto.",
     },
     features: [
       {
         glyph: 'board',
-        title: { en: 'Topics and boards', it: 'Argomenti e riquadri' },
+        title: { en: 'Spaces and tiles', it: 'Spazi e riquadri' },
         text: {
-          en: 'Topics and boards are real folders, so the archive stays tidy and usable from Explorer even without the app.',
-          it: "Argomenti e riquadri sono cartelle vere: l'archivio resta ordinato e si usa da Explorer anche senza l'app.",
+          en: 'Spaces and the tiles on their board are real folders, so the vault stays tidy and usable from Explorer even without the app.',
+          it: "Gli spazi (spaces) e i riquadri (tiles) della loro bacheca sono cartelle vere: il vault resta ordinato e si usa da Explorer anche senza l'app.",
         },
       },
       {
@@ -585,39 +655,72 @@ export const projects: Project[] = [
         glyph: 'search',
         title: { en: 'Search', it: 'Ricerca' },
         text: {
-          en: 'Type anywhere to search the whole archive, with filters by topic and file type.',
-          it: "Basta scrivere per cercare in tutto l'archivio, con filtri per argomento e tipo di file.",
+          en: 'Type anywhere to search the whole vault, with filters by space and file type, which can also be typed (type:pdf, in:Work).',
+          it: 'Basta scrivere per cercare in tutto il vault, con filtri per spazio e tipo di file, che si possono anche scrivere (type:pdf, in:Lavoro).',
         },
       },
       {
         glyph: 'canvas',
-        title: { en: 'Canvas', it: 'Tela' },
+        title: { en: 'Mosaic', it: 'Mosaico' },
         text: {
-          en: 'The whole archive on a canvas you can zoom, with one area for each topic.',
-          it: "Tutto l'archivio su una tela che si zooma, con una zona per ogni argomento.",
+          en: 'The whole vault on a canvas you can zoom, the Mosaic, with one zone for each space.',
+          it: "Tutto il vault su una tela che si zooma, il Mosaic, con una zona per ogni spazio.",
         },
       },
       {
         glyph: 'send',
         title: { en: 'Send to Inlay', it: 'Invia a Inlay' },
         text: {
-          en: "Files can be sent to the archive from Explorer's Send to menu, choosing where to put them.",
-          it: "I file si mandano nell'archivio dal menu Invia a di Explorer, scegliendo dove metterli.",
+          en: "Files can be sent to the vault from Explorer's Send to menu, or moved inside it with Move to…, choosing where to put them.",
+          it: "I file si mandano nel vault dal menu Invia a di Explorer, o si spostano al suo interno con Move to…, scegliendo dove metterli.",
         },
       },
     ],
     requirements: [
       {
-        en: 'Windows 11 with the .NET 10 Desktop Runtime; the installer downloads it if it is missing.',
-        it: "Windows 11 con il .NET 10 Desktop Runtime; se manca, l'installer lo scarica.",
+        en: 'Windows 11 with the .NET 10 Desktop Runtime; the installer downloads it if it is missing. New versions arrive from GitHub by themselves.',
+        it: "Windows 11 con il .NET 10 Desktop Runtime; se manca, l'installer lo scarica. Le versioni nuove arrivano da sole da GitHub.",
       },
       {
-        en: 'Inlay installs for the current user without administrator rights. Uninstalling it leaves the archive and your files where they are.',
-        it: "Inlay si installa per l'utente corrente senza permessi di amministratore. Disinstallandolo, l'archivio e i tuoi file restano dove sono.",
+        en: 'Inlay installs for the current user without administrator rights. Uninstalling it leaves the vault and your files where they are.',
+        it: "Inlay si installa per l'utente corrente senza permessi di amministratore. Disinstallandolo, il vault e i tuoi file restano dove sono.",
       },
     ],
     stack: ['C#', '.NET 10', 'WPF'],
-    shots: [],
+    shots: [
+      {
+        src: inlayBoard,
+        caption: { en: 'Board', it: 'Bacheca' },
+        alt: {
+          en: 'Inlay showing the Work space of a demo vault: its tiles of files and the list of spaces',
+          it: "Inlay con lo spazio Work di un vault di prova: i suoi riquadri di file e l'elenco degli spazi",
+        },
+      },
+      {
+        src: inlayMosaic,
+        caption: { en: 'Mosaic', it: 'Mosaic' },
+        alt: {
+          en: 'The Mosaic: the whole demo vault on one canvas, with a colored zone for each space',
+          it: 'Il Mosaic: tutto il vault di prova su una tela, con una zona colorata per ogni spazio',
+        },
+      },
+      {
+        src: inlaySearch,
+        caption: { en: 'Search', it: 'Ricerca' },
+        alt: {
+          en: 'A search for PDF files across the vault, with the file type filters above the results',
+          it: 'Una ricerca dei PDF in tutto il vault, con i filtri per tipo di file sopra i risultati',
+        },
+      },
+      {
+        src: inlayMove,
+        caption: { en: 'Move to…', it: 'Move to…' },
+        alt: {
+          en: 'The Move to… dialog, listing tiles and spaces to send a file to',
+          it: 'La finestra Move to…, con i riquadri e gli spazi dove mandare un file',
+        },
+      },
+    ],
     shotFit: 'contain',
     tiles: [{ k: 'platform' }, { k: 'installer', asset: /win-setup\.exe$/i }, { k: 'requires', v: '.NET 10' }, { k: 'releases' }],
   },

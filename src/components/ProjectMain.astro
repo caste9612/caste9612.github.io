@@ -19,7 +19,8 @@ const { project: p, lang, delay } = Astro.props;
 const t = ui[lang];
 const gh = repo(p.slug);
 const page = url(lang, `projects/${p.slug}`);
-const slideshow = p.shots.length > 1;
+const shots = p.shots.slice(0, 3);
+const slideshow = shots.length > 1;
 ---
 
 <article class="panel brk mcard reveal" id={`p-${p.slug}`} style={`--acc: ${p.color}${delay ? `; --d: ${delay}` : ''}`} aria-labelledby={`t-${p.slug}`}>
@@ -28,20 +29,20 @@ const slideshow = p.shots.length > 1;
   {gh.latest && <p class="ver">{version(gh.latest.tag)} · {formatDate(lang, gh.latest.date)}</p>}
   <p class="tl">{p.tagline[lang]}</p>
   {
-    p.shots.length > 0 && (
-      <div class="shot">
+    shots.length > 0 && (
+      <div class:list={['shot', slideshow && `n${shots.length}`]}>
         <div class:list={['frame', p.shotFit === 'contain' && 'contain', slideshow && 'slides']}>
-          {p.shots.map((s) =>
+          {shots.map((s) =>
             p.shotFit === 'contain' ? (
-              <Image class="slide" src={s.src} widths={[320, s.src.width]} sizes="300px" alt={s.alt[lang]} />
+              <Image class="slide" src={s.src} widths={[320, Math.min(s.src.width, 640)]} sizes="300px" alt={s.alt[lang]} />
             ) : (
               <Image class="slide" src={s.src} widths={[480, 720, 1000, 1400]} sizes="(min-width: 980px) 520px, calc(100vw - 64px)" alt={s.alt[lang]} />
             ),
           )}
-          {slideshow && <span class="dots" aria-hidden="true">{p.shots.map(() => <i />)}</span>}
+          {slideshow && <span class="dots" aria-hidden="true">{shots.map(() => <i />)}</span>}
         </div>
         <p class:list={['caps', slideshow && 'cycle']} aria-hidden="true">
-          {p.shots.map((s) => <span>{s.caption[lang]}</span>)}
+          {shots.map((s) => <span>{s.caption[lang]}</span>)}
         </p>
       </div>
     )

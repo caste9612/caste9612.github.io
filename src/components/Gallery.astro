@@ -20,7 +20,7 @@ const contain = p.shotFit === 'contain';
     {
       p.shots.map((s, i) =>
         contain ? (
-          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[480, 800, Math.min(s.src.width, 1200)]} sizes="(min-width: 1248px) 760px, 70vw" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
+          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[...new Set([480, 800, 1200, 1600].map((w) => Math.min(w, s.src.width)))]} sizes="(min-width: 1248px) 760px, 70vw" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
         ) : (
           <Image class:list={[i === 0 && 'on']} src={s.src} widths={[640, 960, 1280, 1600, 2000]} sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
         ),
@@ -29,7 +29,7 @@ const contain = p.shotFit === 'contain';
   </div>
   {
     tabs ? (
-      <div class="shots" role="tablist" aria-label={t.chooseShot}>
+      <div class:list={['shots', p.shots.length > 3 && 'many']} style={`--n: ${p.shots.length}`} role="tablist" aria-label={t.chooseShot}>
         {p.shots.map((s, i) => (
           <button class="shot-btn" type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`screen-${p.slug}`} tabindex={i === 0 ? 0 : -1}>
             <Image src={s.src} widths={[320, 480]} sizes="(min-width: 1248px) 380px, 30vw" alt="" loading="lazy" />
