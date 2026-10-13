@@ -716,16 +716,8 @@ export const projects: Project[] = [
         glyph: 'cursor',
         title: { en: 'Works like the desktop', it: 'Si usa come il desktop' },
         text: {
-          en: 'Select, open, rename, drag and copy with the same gestures and shortcuts as Explorer, also to and from other apps.',
-          it: 'Si seleziona, apre, rinomina, trascina e copia con gli stessi gesti e le stesse scorciatoie di Explorer, anche da e verso le altre app.',
-        },
-      },
-      {
-        glyph: 'undo',
-        title: { en: 'Undo', it: 'Annulla' },
-        text: {
-          en: 'Ctrl+Z undoes moves, copies, renames and deletions, several times in a row; deleting always goes through the Recycle Bin.',
-          it: 'Ctrl+Z annulla spostamenti, copie, rinomine ed eliminazioni, anche più volte di seguito; eliminare passa sempre dal Cestino.',
+          en: 'Select, open, rename, drag and copy with the same gestures and shortcuts as Explorer, also to and from other apps. Deleting goes through the Recycle Bin, and Ctrl+Z undoes moves, copies, renames and deletions.',
+          it: 'Si seleziona, apre, rinomina, trascina e copia con gli stessi gesti e le stesse scorciatoie di Explorer, anche da e verso le altre app. Eliminare passa dal Cestino, e Ctrl+Z annulla spostamenti, copie, rinomine ed eliminazioni.',
         },
       },
       {
@@ -740,16 +732,24 @@ export const projects: Project[] = [
         glyph: 'canvas',
         title: { en: 'Mosaic', it: 'Mosaico' },
         text: {
-          en: 'The whole vault on a canvas you can zoom, the Mosaic, with one zone for each space.',
-          it: "Tutto il vault su una tela che si zooma, il Mosaic, con una zona per ogni spazio.",
+          en: 'The whole vault on a canvas you can zoom, the Mosaic, with one zone for each space and a + to add a tile to it.',
+          it: 'Tutto il vault su una tela che si zooma, il Mosaic, con una zona per ogni spazio e un + per aggiungerle un riquadro.',
         },
       },
       {
         glyph: 'send',
-        title: { en: 'Send to Inlay', it: 'Invia a Inlay' },
+        title: { en: 'Move to and Send to', it: 'Sposta e Invia a' },
         text: {
-          en: "Files can be sent to the vault from Explorer's Send to menu, or moved inside it with Move to…, choosing where to put them.",
-          it: "I file si mandano nel vault dal menu Invia a di Explorer, o si spostano al suo interno con Move to…, scegliendo dove metterli.",
+          en: "Files go to a tile or a space chosen by name, with Move to… inside Inlay or with Explorer's Send to menu.",
+          it: 'I file vanno in un riquadro o in uno spazio scelto per nome, con Move to… dentro Inlay o dal menu Invia a di Explorer.',
+        },
+      },
+      {
+        glyph: 'spark',
+        title: { en: 'Claude in a folder', it: 'Claude in una cartella' },
+        text: {
+          en: 'Right-click a space, a tile or a folder to open Claude Code there, in Windows Terminal, with a prompt chosen in the settings or with an empty chat.',
+          it: 'Con il tasto destro su uno spazio, un riquadro o una cartella si apre lì Claude Code, in Windows Terminal, con un prompt scelto nelle impostazioni o con la chat vuota.',
         },
       },
     ],
@@ -763,7 +763,8 @@ export const projects: Project[] = [
         it: "Inlay si installa per l'utente corrente senza permessi di amministratore. Disinstallandolo, il vault e i tuoi file restano dove sono.",
       },
     ],
-    stack: ['C#', '.NET 10', 'WPF'],
+    stack: ['C#', '.NET 10', 'WPF', 'Velopack'],
+    statedLicense: 'MIT',
     shots: [
       {
         src: inlayBoard,
@@ -799,7 +800,7 @@ export const projects: Project[] = [
       },
     ],
     shotFit: 'contain',
-    tiles: [{ k: 'platform' }, { k: 'installer', asset: /win-setup\.exe$/i }, { k: 'requires', v: '.NET 10' }, { k: 'releases' }],
+    tiles: [{ k: 'platform' }, { k: 'installer', asset: /win-setup\.exe$/i }, { k: 'requires', v: '.NET 10' }, { k: 'license' }],
   },
 ];
 

@@ -1,49 +1,49 @@
 {
-  "fetchedAt": "2026-10-13T19:52:43.541Z",
+  "fetchedAt": "2026-10-13T21:44:07.958Z",
   "user": {
     "publicRepos": 17
   },
   "repos": {
     "inlay": {
       "url": "https://github.com/caste9612/Inlay",
-      "license": null,
-      "releaseCount": 13,
+      "license": "MIT",
+      "releaseCount": 14,
       "firstRelease": "2026-10-07T20:08:42Z",
       "latest": {
-        "tag": "v0.3.8",
-        "name": "Inlay 0.3.8",
-        "date": "2026-10-10T22:55:53Z",
-        "url": "https://github.com/caste9612/Inlay/releases/tag/v0.3.8",
+        "tag": "v0.3.9",
+        "name": "Inlay 0.3.9",
+        "date": "2026-10-13T21:35:25Z",
+        "url": "https://github.com/caste9612/Inlay/releases/tag/v0.3.9",
         "assets": [
           {
             "name": "assets.win.json",
             "size": 187,
-            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.8/assets.win.json"
+            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.9/assets.win.json"
           },
           {
-            "name": "Inlay-0.3.8-full.nupkg",
-            "size": 5416580,
-            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.8/Inlay-0.3.8-full.nupkg"
+            "name": "Inlay-0.3.9-full.nupkg",
+            "size": 5425922,
+            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.9/Inlay-0.3.9-full.nupkg"
           },
           {
             "name": "Inlay-win-Portable.zip",
-            "size": 5408037,
-            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.8/Inlay-win-Portable.zip"
+            "size": 5416815,
+            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.9/Inlay-win-Portable.zip"
           },
           {
             "name": "Inlay-win-Setup.exe",
-            "size": 13044868,
-            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.8/Inlay-win-Setup.exe"
+            "size": 13054210,
+            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.9/Inlay-win-Setup.exe"
           },
           {
             "name": "RELEASES",
             "size": 74,
-            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.8/RELEASES"
+            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.9/RELEASES"
           },
           {
             "name": "releases.win.json",
-            "size": 3350,
-            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.8/releases.win.json"
+            "size": 5533,
+            "url": "https://github.com/caste9612/Inlay/releases/download/v0.3.9/releases.win.json"
           }
         ]
       }
@@ -89,7 +89,7 @@
     },
     "pulse": {
       "url": "https://github.com/caste9612/Pulse",
-      "license": null,
+      "license": "MIT",
       "releaseCount": 6,
       "firstRelease": "2026-05-23T21:32:07Z",
       "latest": {
