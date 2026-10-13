@@ -28,6 +28,7 @@ const slideshow = shots.length > 1;
   <h3 class="pname" id={`t-${p.slug}`}><a href={page}>{p.name}</a></h3>
   {gh.latest && <p class="ver">{version(gh.latest.tag)} · {formatDate(lang, gh.latest.date)}</p>}
   <p class="tl">{p.tagline[lang]}</p>
+  <p class="need">{p.need[lang]}</p>
   {
     shots.length > 0 && (
       <div class:list={['shot', slideshow && `n${shots.length}`]}>

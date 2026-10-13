@@ -67,6 +67,11 @@ export interface Project {
   short: Text;
   /** text on the home page card, main projects only */
   summary?: Text;
+  /** the problem in one line, on the home page card */
+  need: Text;
+  /** the two boxes at the top of the project page: the problem that led to the tool, and how it solves it */
+  problem: Text;
+  solution: Text;
   intro: Text;
   features: Feature[];
   requirements: Text[];
@@ -98,6 +103,18 @@ export const projects: Project[] = [
       en: 'File explorer, code editor, git and an integrated terminal running Claude Code, in a small desktop app. Files changed by Claude reload on their own and are highlighted in the tree.',
       it: "Esplora file, editor, git e un terminale integrato con Claude Code, in una piccola app desktop. I file modificati da Claude si ricaricano da soli e sono evidenziati nell'albero.",
     },
+    need: {
+      en: "Following Claude Code's work across several projects, without a heavy IDE.",
+      it: 'Seguire il lavoro di Claude Code su più progetti senza un IDE pesante.',
+    },
+    problem: {
+      en: "Working with Claude Code in a terminal, I couldn't see what it was changing in the project without opening a heavy IDE, and with several repositories and chats open it was easy to lose track.",
+      it: 'Lavorando con Claude Code nel terminale non vedevo cosa cambiava nel progetto senza aprire un IDE pesante, e con più repository e più chat aperte era facile perdere il filo.',
+    },
+    solution: {
+      en: 'A light editor to keep next to Claude. It shows the real file tree with the changes as they happen, keeps chats and repositories side by side, and its Activity view rebuilds the work done in each project.',
+      it: "Un editor leggero da tenere accanto a Claude. Mostra l'albero vero con le modifiche mentre avvengono, tiene affiancati chat e repository, e la vista Activity ricostruisce il lavoro fatto in ogni progetto.",
+    },
     intro: {
       en: 'Orbit is a small desktop editor to keep next to Claude Code: it shows the whole project, edits files, handles git and runs Claude Code in an integrated terminal. Several repositories stay open as tabs in one window. It is not a full IDE: there is no language server, debugger or refactoring.',
       it: 'Orbit è un piccolo editor desktop da tenere accanto a Claude Code: mostra tutto il progetto, modifica i file, gestisce git ed esegue Claude Code in un terminale integrato. Più repository restano aperti come schede nella stessa finestra. Non è un IDE completo: non ci sono language server, debugger o refactoring.',
@@ -107,8 +124,8 @@ export const projects: Project[] = [
         glyph: 'folder',
         title: { en: 'Repositories and files', it: 'Repository e file' },
         text: {
-          en: 'Each repository is a tab with its own color; a repository can also move to a window of its own. The tree shows the real file system, with git changes highlighted as they happen. Quick Open and full-text search.',
-          it: "Ogni repository è una scheda con il suo colore e può anche passare in una finestra sua. L'albero mostra il file system reale, con le modifiche git evidenziate mentre avvengono. Apertura rapida e ricerca nel testo.",
+          en: 'Each repository is a tab with its own color, and can move to a window of its own. The tree shows the real file system with git changes as they happen; for .NET repositories it can also show the solution, as Visual Studio does, with Build and Run. Quick Open and full-text search.',
+          it: "Ogni repository è una scheda con il suo colore e può passare in una finestra sua. L'albero mostra il file system reale con le modifiche git mentre avvengono; nei repository .NET può mostrare anche la solution, come Visual Studio, con Build e Run. Apertura rapida e ricerca nel testo.",
         },
       },
       {
@@ -223,6 +240,18 @@ export const projects: Project[] = [
       en: 'CPU with one bar per core, RAM, GPU, network, disk and top processes, in a small window that starts with Windows and remembers its position and size.',
       it: 'CPU con una barra per core, RAM, GPU, rete, disco e processi principali, in una piccola finestra che parte con Windows e ricorda posizione e dimensioni.',
     },
+    need: {
+      en: 'Keeping an eye on the system without opening Task Manager.',
+      it: "Tenere d'occhio il sistema senza aprire Gestione attività.",
+    },
+    problem: {
+      en: "Task Manager is big, doesn't remember its position and size, and has to be opened every time.",
+      it: 'Gestione attività è grande, non ricorda posizione e dimensioni e va aperto ogni volta.',
+    },
+    solution: {
+      en: 'A small window that starts with Windows. It shows CPU per core, RAM, GPU, network and disk with graphs of the last minute, and uses about 2% of one core.',
+      it: "Una piccola finestra che parte con Windows. Mostra CPU per core, RAM, GPU, rete e disco con i grafici dell'ultimo minuto, e usa circa il 2% di un core.",
+    },
     intro: {
       en: 'Pulse is a small window that stays on the desktop and shows live system metrics, each with a graph of the last 60 seconds. It can start with Windows, lives in the system tray and is designed to use as little CPU and memory as possible.',
       it: "Pulse è una piccola finestra che resta sul desktop e mostra le metriche del sistema in tempo reale, ognuna con il grafico degli ultimi 60 secondi. Può partire con Windows, vive nell'area di notifica ed è pensato per usare meno CPU e memoria possibile.",
@@ -320,6 +349,18 @@ export const projects: Project[] = [
     downloadFor: 'Windows',
     tagline: { en: 'Disk analyzer and duplicate finder.', it: 'Analisi dei dischi e ricerca dei duplicati.' },
     short: { en: 'Disk analyzer', it: 'Analisi dei dischi' },
+    need: {
+      en: 'Seeing where the space goes, and whether the backups are complete.',
+      it: 'Capire dove va lo spazio e se i backup sono completi.',
+    },
+    problem: {
+      en: "With many drives, local and on the network, I didn't know where the space went, which files were duplicates and whether a backup really held everything.",
+      it: 'Con molti dischi, locali e di rete, non sapevo dove finiva lo spazio, quali file erano doppi e se un backup conteneva davvero tutto.',
+    },
+    solution: {
+      en: 'It indexes the drives once and then only what changes. It shows the space as a treemap, finds duplicates by content and compares a drive with its backup, listing what is missing.',
+      it: 'Indicizza i dischi una volta e poi solo i cambiamenti. Mostra lo spazio come treemap, trova i duplicati per contenuto e confronta un disco con il suo backup, elencando cosa manca.',
+    },
     intro: {
       en: 'Prism indexes local and network drives, finds duplicate files, shows space usage as a treemap and checks whether a backup drive contains everything.',
       it: 'Prism indicizza dischi locali e di rete, trova i file duplicati, mostra lo spazio occupato come treemap e verifica se un disco di backup contiene tutto.',
@@ -424,6 +465,18 @@ export const projects: Project[] = [
     downloadFor: 'Windows',
     tagline: { en: 'Educational profiler for Windows.', it: 'Profiler didattico per Windows.' },
     short: { en: 'Profiler', it: 'Profiler' },
+    need: {
+      en: 'Understanding why a program is slow, and learning to read the numbers.',
+      it: 'Capire perché un programma è lento, imparando a leggere i numeri.',
+    },
+    problem: {
+      en: "Profiling tools show plenty of numbers but don't explain what they mean, and finding out why a program was slow took time and several tools.",
+      it: 'Gli strumenti di profiling mostrano molti numeri ma non spiegano cosa significano, e capire perché un programma era lento richiedeva tempo e strumenti diversi.',
+    },
+    solution: {
+      en: 'It attaches to a program that is already running and shows its CPU, memory, I/O, threads and locks, with an explanation for every metric and a guide to finding the bottleneck.',
+      it: 'Si collega a un programma già in esecuzione e ne mostra CPU, memoria, I/O, thread e lock, con una spiegazione per ogni metrica e una guida per trovare il collo di bottiglia.',
+    },
     intro: {
       en: 'Argus attaches to a program that is already running, without modifying it, and shows how it uses CPU, memory, I/O, threads and locks. Every metric has a short explanation of what it measures and what an unusual value means.',
       it: 'Argus si collega a un programma già in esecuzione, senza modificarlo, e mostra come usa CPU, memoria, I/O, thread e lock. Ogni metrica ha una breve spiegazione di cosa misura e di cosa indica un valore anomalo.',
@@ -531,6 +584,18 @@ export const projects: Project[] = [
       it: "Player nell'area di notifica per l'audio di sottofondo.",
     },
     short: { en: 'Tray audio player', it: 'Player audio' },
+    need: {
+      en: 'Focus audio without keeping a browser tab open.',
+      it: 'Audio di concentrazione senza tenere aperta una scheda del browser.',
+    },
+    problem: {
+      en: 'To have white noise or rain while working, I had to keep the video open in a browser tab, with ads and interruptions.',
+      it: 'Per avere rumore bianco o pioggia mentre lavoravo dovevo tenere aperto il video in una scheda del browser, con pubblicità e interruzioni.',
+    },
+    solution: {
+      en: 'It downloads the audio once, at its original quality, and plays it from a small panel in the system tray, also with the media keys.',
+      it: "Scarica l'audio una volta, alla qualità originale, e lo riproduce da un piccolo pannello nell'area di notifica, anche con i tasti multimediali.",
+    },
     intro: {
       en: 'Cove downloads audio at the best available quality and plays it from a small panel that slides out of the system tray. It is meant for focus audio such as white noise, rain or ambient music.',
       it: "Cove scarica l'audio alla migliore qualità disponibile e lo riproduce da un piccolo pannello che esce dall'area di notifica. È pensato per l'audio di concentrazione, come rumore bianco, pioggia o musica ambient.",
@@ -622,6 +687,18 @@ export const projects: Project[] = [
       it: 'Una scrivania da richiamare con una scorciatoia, al posto del desktop di Windows.',
     },
     short: { en: 'Desktop replacement', it: 'Al posto del desktop' },
+    need: {
+      en: 'Finding work files when the desktop is covered by windows.',
+      it: 'Ritrovare i file di lavoro quando il desktop è coperto dalle finestre.',
+    },
+    problem: {
+      en: 'I used the desktop as a workbench, but with many windows open, and even more with GlazeWM, it is always covered. As a way to organise things it is also fragile: one level and no search.',
+      it: 'Usavo il desktop come piano di lavoro, ma con molte finestre aperte, e ancora di più con GlazeWM, è sempre coperto. Come sistema di organizzazione poi è fragile: un solo livello e nessuna ricerca.',
+    },
+    solution: {
+      en: 'A desk that comes up with Alt+E over everything, with the files in a vault of real folders divided into spaces, search, undo and the Mosaic of the whole vault.',
+      it: "Una scrivania che compare con Alt+E sopra a tutto, con i file in un vault di cartelle vere diviso in spazi, la ricerca, l'annulla e il Mosaic di tutto il vault.",
+    },
     intro: {
       en: 'Inlay replaces the desktop as the place where you keep your files: they live in a vault of ordinary folders, organised in spaces, and the window comes up with Alt+E over whatever is open.',
       it: "Inlay sostituisce il desktop come posto dove tenere i file: stanno in un archivio (il vault) di normali cartelle, organizzate in spazi, e la finestra compare con Alt+E sopra a tutto quello che è aperto.",

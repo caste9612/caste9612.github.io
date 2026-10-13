@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-12T21:53:14.025Z",
+  "fetchedAt": "2026-10-13T19:52:43.541Z",
   "user": {
     "publicRepos": 17
   },
@@ -51,38 +51,38 @@
     "orbit": {
       "url": "https://github.com/caste9612/Orbit",
       "license": null,
-      "releaseCount": 30,
+      "releaseCount": 31,
       "firstRelease": "2026-06-03T19:35:18Z",
       "latest": {
-        "tag": "v1.2.0",
-        "name": "Orbit v1.2.0 — Room for all your repos",
-        "date": "2026-10-12T20:12:54Z",
-        "url": "https://github.com/caste9612/Orbit/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "name": "Orbit v1.3.0 — Solutions, like in Visual Studio",
+        "date": "2026-10-13T19:42:36Z",
+        "url": "https://github.com/caste9612/Orbit/releases/tag/v1.3.0",
         "assets": [
           {
             "name": "latest.json",
-            "size": 3420,
-            "url": "https://github.com/caste9612/Orbit/releases/download/v1.2.0/latest.json"
+            "size": 3067,
+            "url": "https://github.com/caste9612/Orbit/releases/download/v1.3.0/latest.json"
           },
           {
-            "name": "Orbit_1.2.0_x64-setup.exe",
-            "size": 3334591,
-            "url": "https://github.com/caste9612/Orbit/releases/download/v1.2.0/Orbit_1.2.0_x64-setup.exe"
+            "name": "Orbit_1.3.0_x64-setup.exe",
+            "size": 3422113,
+            "url": "https://github.com/caste9612/Orbit/releases/download/v1.3.0/Orbit_1.3.0_x64-setup.exe"
           },
           {
-            "name": "Orbit_1.2.0_x64-setup.exe.sig",
+            "name": "Orbit_1.3.0_x64-setup.exe.sig",
             "size": 416,
-            "url": "https://github.com/caste9612/Orbit/releases/download/v1.2.0/Orbit_1.2.0_x64-setup.exe.sig"
+            "url": "https://github.com/caste9612/Orbit/releases/download/v1.3.0/Orbit_1.3.0_x64-setup.exe.sig"
           },
           {
-            "name": "Orbit_1.2.0_x64_en-US.msi",
-            "size": 4124672,
-            "url": "https://github.com/caste9612/Orbit/releases/download/v1.2.0/Orbit_1.2.0_x64_en-US.msi"
+            "name": "Orbit_1.3.0_x64_en-US.msi",
+            "size": 4239360,
+            "url": "https://github.com/caste9612/Orbit/releases/download/v1.3.0/Orbit_1.3.0_x64_en-US.msi"
           },
           {
-            "name": "Orbit_1.2.0_x64_en-US.msi.sig",
+            "name": "Orbit_1.3.0_x64_en-US.msi.sig",
             "size": 416,
-            "url": "https://github.com/caste9612/Orbit/releases/download/v1.2.0/Orbit_1.2.0_x64_en-US.msi.sig"
+            "url": "https://github.com/caste9612/Orbit/releases/download/v1.3.0/Orbit_1.3.0_x64_en-US.msi.sig"
           }
         ]
       }

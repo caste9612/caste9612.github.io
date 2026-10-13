@@ -25,6 +25,7 @@ const page = url(lang, `projects/${p.slug}`);
   <h3 class="pname" id={`t-${p.slug}`}><a href={page}>{p.name}</a></h3>
   {gh.latest && <p class="ver">{version(gh.latest.tag)} · {formatDate(lang, gh.latest.date)}</p>}
   <p class="tl">{p.tagline[lang]}</p>
+  <p class="need">{p.need[lang]}</p>
   <div class="links">
     <a href={page} aria-label={t.detailsOf(p.name)}>{t.details}<Icon name="arrowRight" /></a>
     <a href={`${gh.url}/releases/latest`}><Icon name="download" />{t.download}</a>

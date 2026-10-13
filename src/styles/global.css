@@ -346,6 +346,10 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .scard { --bc: color-mix(in srgb, var(--acc) 55%, transparent); --bl: 11px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 18px 22px; }
 .scard .pname { font-size: 1.3rem; }
 .scard .tl { margin-top: 14px; font-size: 1rem; font-weight: 400; color: var(--soft); max-width: 26ch; }
+/* the problem behind the project, under its tagline */
+.need { margin: 10px auto 0; max-width: 46ch; font: 400 .92rem/1.5 var(--f-body); color: var(--muted); text-wrap: balance; }
+.need::before { content: ""; display: inline-block; width: 10px; height: 1px; margin-right: 8px; vertical-align: .3em; background: var(--acc); }
+.scard .need { max-width: 28ch; font-size: .86rem; }
 .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-top: auto; padding-top: 18px; }
 .links a { position: relative; display: inline-flex; align-items: center; gap: 7px; padding: 6px 2px; font: 500 14.5px/1 var(--f-body); color: color-mix(in srgb, var(--acc) 62%, white); }
 .links a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -491,6 +495,10 @@ html:not(.js) button.mail { display: none; }
 .dpanel h3 { margin: 0 0 16px; font: 500 12px/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
 .dpanel p { margin: 0 auto; max-width: 46ch; color: var(--soft); }
 .dpanel p + p { margin-top: 10px; }
+/* problem and solution, between the top of a project page and its overview */
+.section.why { padding-bottom: 0; }
+.why .two { margin-top: 0; }
+.why .dpanel p { font-size: 1.05rem; color: var(--text); }
 .release { --bc: color-mix(in srgb, var(--acc) 55%, transparent); display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 22px; padding: 30px 24px; text-align: center; background: radial-gradient(60% 120% at 50% 0%, color-mix(in srgb, var(--acc) 12%, transparent), transparent 70%), linear-gradient(180deg, var(--panel-a), var(--panel-b)); }
 .release .k { margin: 0; letter-spacing: .2em; }
 .release .v { display: flex; align-items: center; gap: 12px; font: 500 1.4rem/1.2 var(--f-display); color: var(--text); }

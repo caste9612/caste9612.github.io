@@ -52,6 +52,8 @@ interface Strings {
   footer: string;
   projects: string;
   metaProject: (name: string, tagline: string) => string;
+  problemLabel: string;
+  solutionLabel: string;
   overviewEyebrow: string;
   overviewTitle: string;
   detailsEyebrow: string;
@@ -101,7 +103,8 @@ export const ui: Record<Lang, Strings> = {
     tickerLabel: 'Latest releases',
     projEyebrow: '01 — Projects',
     projTitle: 'Open-source software',
-    projLede: 'Desktop applications I develop in my spare time. Free to download, with source code on GitHub.',
+    projLede:
+      "The software I write at work is confidential and I can't show it. These are tools I built for problems I run into while working: each page says what the problem was and how the tool solves it. I develop them together with AI coding tools such as Claude Code, which make it possible to finish programs that would otherwise have stayed a sketch. Free to download, with source code on GitHub.",
     downloadFor: (platform) => `Download for ${platform}`,
     download: 'Download',
     source: 'Source code',
@@ -125,6 +128,8 @@ export const ui: Record<Lang, Strings> = {
     footer: 'No cookies, no tracking',
     projects: 'Projects',
     metaProject: (name, tagline) => `${name}: ${tagline} Free download, source code on GitHub.`,
+    problemLabel: 'The problem',
+    solutionLabel: 'The solution',
     overviewEyebrow: '01 — Overview',
     overviewTitle: 'What it does',
     detailsEyebrow: '02 — Details',
@@ -172,7 +177,8 @@ export const ui: Record<Lang, Strings> = {
     tickerLabel: 'Ultime versioni',
     projEyebrow: '01 — Progetti',
     projTitle: 'Software open source',
-    projLede: 'Applicazioni desktop che sviluppo nel tempo libero. Si scaricano gratis e il codice è su GitHub.',
+    projLede:
+      "Il software che scrivo al lavoro è riservato e non posso mostrarlo. Questi sono strumenti che ho costruito per problemi che incontro lavorando: ogni pagina dice qual era il problema e come lo risolve. Li sviluppo insieme a strumenti di programmazione con l'AI come Claude Code, che permettono di finire programmi che prima sarebbero rimasti abbozzi. Si scaricano gratis e il codice è su GitHub.",
     downloadFor: (platform) => `Scarica per ${platform}`,
     download: 'Scarica',
     source: 'Codice sorgente',
@@ -196,6 +202,8 @@ export const ui: Record<Lang, Strings> = {
     footer: 'Nessun cookie, nessun tracciamento',
     projects: 'Progetti',
     metaProject: (name, tagline) => `${name}: ${tagline} Si scarica gratis, il codice è su GitHub.`,
+    problemLabel: 'Il problema',
+    solutionLabel: 'La soluzione',
     overviewEyebrow: '01 — Panoramica',
     overviewTitle: 'Cosa fa',
     detailsEyebrow: '02 — Dettagli',

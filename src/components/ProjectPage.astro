@@ -85,6 +85,21 @@ const others = projects.filter((o) => o.slug !== p.slug);
     </div>
   </section>
 
+  <section class="section why" aria-label={`${t.problemLabel} · ${t.solutionLabel}`} data-animated>
+    <div class="wrap">
+      <div class="two">
+        <section class="panel brk dpanel reveal" aria-labelledby="problem-title">
+          <h3 id="problem-title">{t.problemLabel}</h3>
+          <p>{p.problem[lang]}</p>
+        </section>
+        <section class="panel brk dpanel reveal" style="--d: .1s" aria-labelledby="solution-title">
+          <h3 id="solution-title">{t.solutionLabel}</h3>
+          <p>{p.solution[lang]}</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="overview" aria-labelledby="overview-title" data-animated>
     <div class="wrap">
       <SectionHead eyebrow={t.overviewEyebrow} title={t.overviewTitle} id="overview-title" lede={p.intro[lang]} />
