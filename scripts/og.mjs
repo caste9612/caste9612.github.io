@@ -3,6 +3,7 @@
 // of the site underneath. Writes public/og/<page>-<lang>.jpg; run it after a build when the look of
 // the site, a project name or a tagline changes, then build again:
 //   npm run build:offline && npm run og && npm run build:offline
+// Names after it draw only those pages, so the others stay as they are: npm run og -- prism home
 // It uses the Chrome installed on the computer (playwright-core does not download browsers).
 import { preview } from 'astro';
 import { chromium } from 'playwright-core';
@@ -12,10 +13,11 @@ import { fileURLToPath } from 'node:url';
 const root = new URL('..', import.meta.url);
 const out = new URL('public/og/', root);
 const port = 4329;
+const only = process.argv.slice(2);
 const pages = [
   { name: 'home', path: '' },
   ...['orbit', 'pulse', 'prism', 'argus', 'cove', 'inlay'].map((slug) => ({ name: slug, path: `projects/${slug}/` })),
-];
+].filter((p) => only.length === 0 || only.includes(p.name));
 const langs = { en: '', it: 'it/' };
 
 // what changes on the page to make it a card

@@ -30,11 +30,14 @@ npm run check          # type check
 
 ## Screenshots
 
-Some screenshots have parts blurred before being added to `src/assets/`:
+The screenshots show demo data, never personal or work data:
 
-- Pulse: the public IP address.
-- Orbit, Activity view: names of other projects and the text of the prompts.
-- Prism, backup check: the names of the missing files.
+- Orbit: an isolated build on public repositories cloned to a drive letter (no user name in the paths),
+  with real Claude Code chats and, for Activity, transcripts built from the real commits.
+- Inlay: the app's own preview mode on a demo vault.
+- Cove: a clone with only the built-in sounds.
+- Prism: the screenshots of its README, from the simulated backend of its interface.
+- Pulse: the public IP address is blurred.
 
 When a screenshot is replaced, check it for personal or work data before adding it.
 

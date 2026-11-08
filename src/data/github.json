@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-08T00:07:27.216Z",
+  "fetchedAt": "2026-11-08T13:28:32.126Z",
   "user": {
     "publicRepos": 17
   },
@@ -149,18 +149,28 @@
     "prism": {
       "url": "https://github.com/caste9612/Prism",
       "license": "MIT",
-      "releaseCount": 2,
+      "releaseCount": 3,
       "firstRelease": "2026-01-06T22:14:29Z",
       "latest": {
-        "tag": "1.0.1",
-        "name": "Prism 1.0.1",
-        "date": "2026-01-11T00:59:01Z",
-        "url": "https://github.com/caste9612/Prism/releases/tag/1.0.1",
+        "tag": "v2.0.0",
+        "name": "Prism 2.0.0",
+        "date": "2026-11-08T13:26:43Z",
+        "url": "https://github.com/caste9612/Prism/releases/tag/v2.0.0",
         "assets": [
           {
-            "name": "Prism.exe",
-            "size": 7414784,
-            "url": "https://github.com/caste9612/Prism/releases/download/1.0.1/Prism.exe"
+            "name": "latest.json",
+            "size": 817,
+            "url": "https://github.com/caste9612/Prism/releases/download/v2.0.0/latest.json"
+          },
+          {
+            "name": "Prism_2.0.0_x64-setup.exe",
+            "size": 6428090,
+            "url": "https://github.com/caste9612/Prism/releases/download/v2.0.0/Prism_2.0.0_x64-setup.exe"
+          },
+          {
+            "name": "Prism_2.0.0_x64-setup.exe.sig",
+            "size": 432,
+            "url": "https://github.com/caste9612/Prism/releases/download/v2.0.0/Prism_2.0.0_x64-setup.exe.sig"
           }
         ]
       }

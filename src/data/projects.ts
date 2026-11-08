@@ -13,9 +13,6 @@ import pulseIcon from '../assets/projects/pulse/icon.png';
 import pulseDark from '../assets/projects/pulse/dark.webp';
 import pulseLight from '../assets/projects/pulse/light.webp';
 import prismIcon from '../assets/projects/prism/icon.png';
-import prismDashboard from '../assets/projects/prism/dashboard.webp';
-import prismSearch from '../assets/projects/prism/search.webp';
-import prismBackup from '../assets/projects/prism/backup.webp';
 import argusIcon from '../assets/projects/argus/icon.svg';
 import argusMetrics from '../assets/projects/argus/metrics.webp';
 import argusFlame from '../assets/projects/argus/flame.webp';
@@ -360,116 +357,95 @@ export const projects: Project[] = [
     color: '#4fc3f7',
     icon: prismIcon,
     squareIcon: true,
-    platform: { en: 'Windows', it: 'Windows' },
+    platform: { en: 'Windows 11', it: 'Windows 11' },
     downloadFor: { en: 'Windows', it: 'Windows' },
-    tagline: { en: 'Disk analyzer and duplicate finder.', it: 'Analisi dei dischi e ricerca dei duplicati.' },
-    short: { en: 'Disk analyzer', it: 'Analisi dei dischi' },
+    tagline: {
+      en: 'A catalog of all your disks, even the disconnected ones.',
+      it: 'Un catalogo di tutti i tuoi dischi, anche di quelli scollegati.',
+    },
+    short: { en: 'Disk catalog', it: 'Catalogo dei dischi' },
     need: {
-      en: 'Seeing where the space goes, and whether the backups are complete.',
-      it: 'Capire dove va lo spazio e se i backup sono completi.',
+      en: 'Finding files on disks that are not connected, and knowing what is on each one.',
+      it: "Ritrovare i file anche sui dischi scollegati, e sapere cosa c'è su ognuno.",
     },
     problem: {
-      en: "With many drives, local and on the network, I didn't know where the space went, which files were duplicates and whether a backup really held everything.",
-      it: 'Con molti dischi, locali e di rete, non sapevo dove finiva lo spazio, quali file erano doppi e se un backup conteneva davvero tutto.',
+      en: "With many drives, internal, external and on the network, I didn't know which one held a file, where the space went, which files were duplicates and whether a backup really held everything.",
+      it: 'Con molti dischi, interni, esterni e di rete, non sapevo quale contenesse un file, dove finiva lo spazio, quali file erano doppi e se un backup conteneva davvero tutto.',
     },
     solution: {
-      en: 'It indexes the drives once and then only what changes. It shows the space as a treemap, finds duplicates by content and compares a drive with its backup, listing what is missing.',
-      it: 'Indicizza i dischi una volta e poi solo i cambiamenti. Mostra lo spazio come treemap, trova i duplicati per contenuto e confronta un disco con il suo backup, elencando cosa manca.',
+      en: 'It keeps a catalog of every disk, searchable even when the disk is unplugged. On top of it, it shows the space, finds exact and similar duplicates, checks backups and watches the health of the disks.',
+      it: 'Tiene un catalogo di ogni disco, in cui si cerca anche quando il disco è scollegato. Sopra il catalogo mostra lo spazio, trova i duplicati identici e simili, verifica i backup e controlla la salute dei dischi.',
     },
     intro: {
-      en: 'Prism indexes local and network drives, finds duplicate files, shows space usage as a treemap and checks whether a backup drive contains everything.',
-      it: 'Prism indicizza dischi locali e di rete, trova i file duplicati, mostra lo spazio occupato come treemap e verifica se un disco di backup contiene tutto.',
+      en: 'Prism indexes every drive, internal, external, USB sticks and network shares, and keeps the catalog when the drive is unplugged. On top of the catalog it offers search as you type, space analysis, exact and similar duplicates, backup checks and disk health.',
+      it: "Prism indicizza ogni disco, interno, esterno, chiavetta USB o cartella di rete, e ne tiene il catalogo anche quando il disco è scollegato. Sopra il catalogo offre la ricerca mentre scrivi, l'analisi dello spazio, i duplicati identici e simili, la verifica dei backup e la salute dei dischi.",
     },
     features: [
       {
-        glyph: 'scan',
-        title: { en: 'Scanning', it: 'Scansione' },
+        glyph: 'drive',
+        title: { en: 'Catalog', it: 'Catalogo' },
         text: {
-          en: 'Parallel scanning of local and network drives; after the first pass only changed files are read again.',
-          it: 'Scansione in parallelo di dischi locali e di rete; dopo la prima passata vengono riletti solo i file cambiati.',
+          en: 'Every disk you connect is indexed in the background, NTFS volumes through the Master File Table: about a million files in a few seconds. Disconnected disks stay in the catalog, recognised even when their letter changes.',
+          it: 'Ogni disco collegato viene indicizzato in background, i volumi NTFS tramite la Master File Table: circa un milione di file in pochi secondi. I dischi scollegati restano nel catalogo, riconosciuti anche se cambiano lettera.',
         },
       },
       {
         glyph: 'search',
         title: { en: 'Search', it: 'Ricerca' },
         text: {
-          en: 'Full-text search over the index with filters for size, extension, type and path, also from a global shortcut (Ctrl+Space).',
-          it: "Ricerca nell'indice con filtri per dimensione, estensione, tipo e percorso, anche da una scorciatoia globale (Ctrl+Spazio).",
-        },
-      },
-      {
-        glyph: 'copy',
-        title: { en: 'Duplicates', it: 'Duplicati' },
-        text: {
-          en: 'Duplicate files found by content hash (BLAKE3) and similar images by perceptual hash, with the space wasted by each group.',
-          it: 'File duplicati trovati per hash del contenuto (BLAKE3) e immagini simili per hash percettivo, con lo spazio sprecato da ogni gruppo.',
+          en: 'Ctrl+Space from anywhere searches all the disks, connected or not, as you type, with filters for type, size, date and disk (report size:>1MB ext:pdf).',
+          it: 'Ctrl+Spazio da qualsiasi punto cerca in tutti i dischi, collegati o no, mentre scrivi, con filtri per tipo, dimensione, data e disco (report size:>1MB ext:pdf).',
         },
       },
       {
         glyph: 'treemap',
-        title: { en: 'Space usage', it: 'Spazio occupato' },
+        title: { en: 'Space and cleanup', it: 'Spazio e pulizia' },
         text: {
-          en: 'Folder tree and interactive treemap of the space in use, with the distribution by file type.',
-          it: 'Albero delle cartelle e treemap interattiva dello spazio occupato, con la distribuzione per tipo di file.',
+          en: 'A map of what takes space on a disk or folder, the largest files and statistics by type, also for disconnected disks, and from Explorer with Analyze with Prism. Space to recover is removed only after a confirmation.',
+          it: "Una mappa di cosa occupa spazio in un disco o in una cartella, i file più grandi e le statistiche per tipo, anche per i dischi scollegati, e da Explorer con Analyze with Prism. Lo spazio da recuperare si libera solo dopo una conferma.",
+        },
+      },
+      {
+        glyph: 'copy',
+        title: { en: 'Duplicates and similar', it: 'Duplicati e simili' },
+        text: {
+          en: 'Identical files across all the disks, found by content in the background at low priority, and photos and videos that look the same even when resized or re-encoded. Copies go to the Recycle Bin, after a check that they have not changed.',
+          it: 'File identici in tutti i dischi, trovati per contenuto in background a bassa priorità, e foto e video che si somigliano anche se ridimensionati o ricodificati. Le copie vanno nel Cestino, dopo un controllo che non siano cambiate.',
         },
       },
       {
         glyph: 'shield',
-        title: { en: 'Backup check', it: 'Verifica dei backup' },
+        title: { en: 'Backup', it: 'Backup' },
         text: {
-          en: 'Checks whether every file on one drive is also on another, and lists what is missing grouped by folder.',
-          it: 'Controlla se ogni file di un disco si trova anche su un altro ed elenca quelli mancanti raggruppati per cartella.',
+          en: 'Checks that the files of a disk or folder have a copy somewhere else, compares two disks or folders and copies what is missing, reading every copy back to verify it.',
+          it: "Verifica che i file di un disco o di una cartella abbiano una copia altrove, confronta due dischi o cartelle e copia ciò che manca, rileggendo ogni copia per verificarla.",
         },
       },
       {
-        glyph: 'drive',
-        title: { en: 'Drive monitor', it: 'Controllo dei dischi' },
+        glyph: 'chart',
+        title: { en: 'Disk health', it: 'Salute dei dischi' },
         text: {
-          en: 'Notices when drives go online or offline and queues the known ones for a new scan when they come back.',
-          it: 'Si accorge quando i dischi si collegano o si scollegano e rimette in coda per la scansione quelli già noti quando tornano.',
+          en: 'The SMART data of the disks, temperature, wear and errors, with their history and a notice when a disk gets worse.',
+          it: 'I dati SMART dei dischi, temperatura, usura ed errori, con il loro storico e un avviso quando un disco peggiora.',
         },
       },
     ],
     requirements: [
       {
-        en: 'Windows. Prism is portable: download Prism.exe and run it, no installation needed.',
-        it: 'Windows. Prism è portatile: si scarica Prism.exe e si avvia, senza installazione.',
+        en: 'Windows 11, 64-bit, installed for all users. Prism runs as administrator, to read the Master File Table and the change journal of NTFS disks and their health data, and starts with Windows in the notification area; this can be turned off in Settings. The installer is not code-signed yet, so Windows SmartScreen asks for a confirmation.',
+        it: "Windows 11 a 64 bit, installato per tutti gli utenti. Prism gira come amministratore, per leggere la Master File Table e il journal dei dischi NTFS e i loro dati di salute, e parte con Windows nell'area di notifica; si può disattivare nelle impostazioni. L'installer non è ancora firmato, quindi Windows SmartScreen chiede una conferma.",
       },
       {
-        en: "The index is kept in a local SQLite database in the user's application data.",
-        it: "L'indice è salvato in un database SQLite locale, nei dati dell'applicazione dell'utente.",
+        en: 'New versions are downloaded in the background, checked against their signature and installed only when you choose. No telemetry: the catalog stays on your PC. The interface is in English and Italian, with a light and a dark theme.',
+        it: "Le versioni nuove si scaricano in background, vengono verificate con la loro firma e si installano solo quando lo scegli. Nessuna telemetria: il catalogo resta sul tuo PC. L'interfaccia è in inglese e in italiano, con un tema chiaro e uno scuro.",
       },
     ],
-    stack: ['Rust', 'Tauri 2', 'SvelteKit', 'TypeScript', 'SQLite FTS5', 'D3.js', 'BLAKE3'],
+    stack: ['Rust', 'Tauri 2', 'Svelte 5', 'TypeScript', 'SQLite', 'BLAKE3', 'NTFS MFT and USN', 'Media Foundation'],
     statedLicense: 'MIT',
-    shots: [
-      {
-        src: prismDashboard,
-        caption: { en: 'Dashboard', it: 'Pannello principale' },
-        alt: {
-          en: "Prism's dashboard with the indexed drives and the scan progress",
-          it: "Il pannello di Prism con i dischi indicizzati e l'avanzamento della scansione",
-        },
-      },
-      {
-        src: prismSearch,
-        caption: { en: 'Quick search', it: 'Ricerca rapida' },
-        alt: {
-          en: "Prism's quick search with file type filters",
-          it: 'La ricerca rapida di Prism con i filtri per tipo di file',
-        },
-      },
-      {
-        src: prismBackup,
-        caption: { en: 'Backup check', it: 'Verifica dei backup' },
-        alt: {
-          en: 'Prism checking whether a backup drive contains every file',
-          it: 'Prism che verifica se un disco di backup contiene tutti i file',
-        },
-      },
-    ],
+    // the screenshots of Prism 2.0 are being redrawn: they come back with its README
+    shots: [],
     shotFit: 'contain',
-    tiles: [{ k: 'platform' }, { k: 'downloadSize', asset: /\.exe$/i }, { k: 'installation', v: 'notNeeded' }, { k: 'license' }],
+    tiles: [{ k: 'platform' }, { k: 'installer', asset: /x64-setup\.exe$/i }, { k: 'releases' }, { k: 'license' }],
   },
   {
     slug: 'argus',
