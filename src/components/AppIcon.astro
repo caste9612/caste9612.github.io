@@ -8,17 +8,19 @@ interface Props {
   size: number;
   class?: string;
   loading?: 'eager' | 'lazy';
+  /** high for the icon a page opens with */
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
-const { project, size, class: className, loading = 'lazy' } = Astro.props;
+const { project, size, class: className, loading = 'lazy', fetchpriority } = Astro.props;
 const raster = project.icon.format !== 'svg';
 const classes = [className, project.squareIcon && 'sq'].filter(Boolean).join(' ') || undefined;
 ---
 
 {
   raster ? (
-    <Image class={classes} src={project.icon} width={size} height={size} densities={[1, 2]} alt="" loading={loading} />
+    <Image class={classes} src={project.icon} width={size} height={size} densities={[1, 2]} alt="" loading={loading} fetchpriority={fetchpriority} />
   ) : (
-    <Image class={classes} src={project.icon} width={size} height={size} alt="" loading={loading} />
+    <Image class={classes} src={project.icon} width={size} height={size} alt="" loading={loading} fetchpriority={fetchpriority} />
   )
 }

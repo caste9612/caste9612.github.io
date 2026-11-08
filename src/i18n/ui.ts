@@ -54,6 +54,7 @@ interface Strings {
   projects: string;
   titleProject: (name: string, short: string) => string;
   metaProject: (name: string, tagline: string) => string;
+  whyTitle: string;
   problemLabel: string;
   solutionLabel: string;
   overviewEyebrow: string;
@@ -132,6 +133,7 @@ export const ui: Record<Lang, Strings> = {
     projects: 'Projects',
     titleProject: (name, short) => `${name} — ${short} | Antonio Castellucci`,
     metaProject: (name, tagline) => `${name}: ${tagline} Free download, source code on GitHub.`,
+    whyTitle: 'The problem and the solution',
     problemLabel: 'The problem',
     solutionLabel: 'The solution',
     overviewEyebrow: '01 — Overview',
@@ -208,6 +210,7 @@ export const ui: Record<Lang, Strings> = {
     projects: 'Progetti',
     titleProject: (name, short) => `${name} — ${short} | Antonio Castellucci`,
     metaProject: (name, tagline) => `${name}: ${tagline} Si scarica gratis, il codice è su GitHub.`,
+    whyTitle: 'Il problema e la soluzione',
     problemLabel: 'Il problema',
     solutionLabel: 'La soluzione',
     overviewEyebrow: '01 — Panoramica',

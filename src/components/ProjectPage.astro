@@ -106,8 +106,9 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="section why" aria-label={`${t.problemLabel} · ${t.solutionLabel}`} data-animated>
+  <section class="section why" aria-labelledby="why-title" data-animated>
     <div class="wrap">
+      <h2 class="sr" id="why-title">{t.whyTitle}</h2>
       <div class="two">
         <section class="panel brk dpanel reveal" aria-labelledby="problem-title">
           <h3 id="problem-title">{t.problemLabel}</h3>

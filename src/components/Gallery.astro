@@ -20,9 +20,9 @@ const contain = p.shotFit === 'contain';
     {
       p.shots.map((s, i) =>
         contain ? (
-          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[...new Set([480, 800, 1200, 1600].map((w) => Math.min(w, s.src.width)))]} sizes="(min-width: 1248px) 760px, 70vw" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
+          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[...new Set([480, 800, 1200, 1600].map((w) => Math.min(w, s.src.width)))]} sizes="(min-width: 1248px) 760px, 70vw" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'} />
         ) : (
-          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[640, 960, 1280, 1600, 2000]} sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} />
+          <Image class:list={[i === 0 && 'on']} src={s.src} widths={[640, 960, 1280, 1600, 2000]} sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)" alt={s.alt[lang]} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'} />
         ),
       )
     }

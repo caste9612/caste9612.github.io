@@ -27,5 +27,5 @@ const g =
     <g class="rg-c"><circle cx="200" cy={g.cy} r={g.r[1]} fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray={g.arc}></circle></g>
     <g class="rg-d"><circle cx="200" cy={g.cy - g.r[2]} r="3.2" fill="currentColor"></circle></g>
   </svg>
-  <AppIcon class="app" project={project} size={px} loading={size === 'xl' ? 'eager' : 'lazy'} />
+  <AppIcon class="app" project={project} size={px} loading={size === 'xl' ? 'eager' : 'lazy'} fetchpriority={size === 'xl' ? 'high' : undefined} />
 </div>
