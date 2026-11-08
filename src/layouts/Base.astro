@@ -34,7 +34,7 @@ const href = (l: Lang) => (Astro.site ? new URL(url(l, path), Astro.site).href :
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#05060a" />
+    <meta name="theme-color" content="#000000" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {Astro.site && alternates && <link rel="canonical" href={href(lang)} />}
@@ -58,8 +58,7 @@ const href = (l: Lang) => (Astro.site ? new URL(url(l, path), Astro.site).href :
     <Font cssVariable="--font-display" preload={[{ weight: 500 }]} />
     <Font cssVariable="--font-body" preload={[{ weight: 400 }]} />
     <Font cssVariable="--font-mono" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
-  </head>
+    <script is:inline>document.documentElement.classList.add('js');</script>  </head>
   <body id="top" style={accent ? `--acc: ${accent}` : undefined}>
     <a class="skip" href="#main">{t.skip}</a>
     <Header lang={lang} path={path} />

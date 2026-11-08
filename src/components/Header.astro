@@ -24,14 +24,14 @@ const inProjects = path.startsWith('projects/');
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <defs>
           <radialGradient id="g-brand" cx=".5" cy=".3" r=".8">
-            <stop offset="0" stop-color="#a9c6ff"></stop>
-            <stop offset=".45" stop-color="#4c8dff"></stop>
-            <stop offset="1" stop-color="#6a4cf0"></stop>
+            <stop offset="0" style="stop-color: var(--sun-1)"></stop>
+            <stop offset=".45" style="stop-color: var(--sun-3)"></stop>
+            <stop offset="1" style="stop-color: var(--sun-4)"></stop>
           </radialGradient>
         </defs>
-        <circle cx="12" cy="12" r="10.5" fill="none" stroke="rgba(170,185,255,.35)" stroke-dasharray="1.6 2.6"></circle>
+        <circle cx="12" cy="12" r="10.5" fill="none" style="stroke: rgb(var(--hi) / .35)" stroke-dasharray="1.6 2.6"></circle>
         <circle cx="12" cy="12" r="6" fill="url(#g-brand)"></circle>
-        <circle cx="19.4" cy="4.6" r="1.6" fill="#e9ecf8"></circle>
+        <circle cx="19.4" cy="4.6" r="1.6" style="fill: var(--text)"></circle>
       </svg>
       <span>{person.name}</span>
     </a>

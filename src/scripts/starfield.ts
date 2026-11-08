@@ -9,7 +9,11 @@ const layers = [
   { density: 1 / 12000, rMin: 0.7, rMax: 1.25, aMin: 0.45, aMax: 0.85, depth: 18, drift: 0.009 },
   { density: 1 / 38000, rMin: 1.1, rMax: 1.85, aMin: 0.7, aMax: 1, depth: 34, drift: 0.016 },
 ];
-const tints = ['238,241,255', '238,241,255', '238,241,255', '168,198,255', '204,184,255'];
+// star colours from the palette (--star, --star-a, --star-b, as r,g,b): mostly the base one
+const root = getComputedStyle(document.documentElement);
+const rgb = (name: string, fallback: string) => root.getPropertyValue(name).trim() || fallback;
+const base = rgb('--star', '238,241,255');
+const tints = [base, base, base, rgb('--star-a', '168,198,255'), rgb('--star-b', '204,184,255')];
 
 interface Star {
   x: number;
@@ -111,8 +115,8 @@ function starfield(host: HTMLElement) {
         const tx = hx - shot.vx * 150;
         const ty = hy - shot.vy * 150;
         const g = c.createLinearGradient(hx, hy, tx, ty);
-        g.addColorStop(0, `rgba(238,241,255,${(Math.max(0, 1 - k) * 0.85).toFixed(3)})`);
-        g.addColorStop(1, 'rgba(238,241,255,0)');
+        g.addColorStop(0, `rgba(${base},${(Math.max(0, 1 - k) * 0.85).toFixed(3)})`);
+        g.addColorStop(1, `rgba(${base},0)`);
         c.globalAlpha = 1;
         c.strokeStyle = g;
         c.lineWidth = 1.1;
