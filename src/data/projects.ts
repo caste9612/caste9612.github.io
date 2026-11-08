@@ -13,6 +13,12 @@ import pulseIcon from '../assets/projects/pulse/icon.png';
 import pulseDark from '../assets/projects/pulse/dark.webp';
 import pulseLight from '../assets/projects/pulse/light.webp';
 import prismIcon from '../assets/projects/prism/icon.png';
+import prismCatalog from '../assets/projects/prism/catalog.webp';
+import prismSpace from '../assets/projects/prism/space.webp';
+import prismSearch from '../assets/projects/prism/search.webp';
+import prismDuplicates from '../assets/projects/prism/duplicates.webp';
+import prismSimilar from '../assets/projects/prism/similar.webp';
+import prismHealth from '../assets/projects/prism/health.webp';
 import argusIcon from '../assets/projects/argus/icon.svg';
 import argusMetrics from '../assets/projects/argus/metrics.webp';
 import argusFlame from '../assets/projects/argus/flame.webp';
@@ -442,8 +448,56 @@ export const projects: Project[] = [
     ],
     stack: ['Rust', 'Tauri 2', 'Svelte 5', 'TypeScript', 'SQLite', 'BLAKE3', 'NTFS MFT and USN', 'Media Foundation'],
     statedLicense: 'MIT',
-    // the screenshots of Prism 2.0 are being redrawn: they come back with its README
-    shots: [],
+    shots: [
+      {
+        src: prismCatalog,
+        caption: { en: 'Catalog', it: 'Catalogo' },
+        alt: {
+          en: "Prism's catalog in the dark theme: the totals of files, duplicates and similar groups, and five disks grouped by physical disk, among them a NAS and a backup disk kept in a drawer",
+          it: 'Il catalogo di Prism nel tema scuro: i totali di file, duplicati e gruppi simili, e cinque dischi raggruppati per disco fisico, tra cui un NAS e un disco di backup tenuto in un cassetto',
+        },
+      },
+      {
+        src: prismSpace,
+        caption: { en: 'Space', it: 'Spazio' },
+        alt: {
+          en: 'The Space tab of a disk: the map of what takes space, with the largest folders on the side',
+          it: 'La scheda Spazio di un disco: la mappa di cosa occupa spazio, con le cartelle più grandi a lato',
+        },
+      },
+      {
+        src: prismSearch,
+        caption: { en: 'Search', it: 'Ricerca' },
+        alt: {
+          en: 'A search across all the disks, connected or not, with the filters above the results',
+          it: 'Una ricerca in tutti i dischi, collegati o no, con i filtri sopra i risultati',
+        },
+      },
+      {
+        src: prismDuplicates,
+        caption: { en: 'Duplicates', it: 'Duplicati' },
+        alt: {
+          en: 'Duplicates across the whole catalog: groups with the space they free, the copies chosen for removal and the bar that confirms them',
+          it: "Duplicati in tutto il catalogo: i gruppi con lo spazio che liberano, le copie scelte per l'eliminazione e la barra che le conferma",
+        },
+      },
+      {
+        src: prismSimilar,
+        caption: { en: 'Similar', it: 'Simili' },
+        alt: {
+          en: 'Similar images, with the similarity threshold and a copy on a disconnected disk',
+          it: 'Immagini simili, con la soglia di somiglianza e una copia su un disco scollegato',
+        },
+      },
+      {
+        src: prismHealth,
+        caption: { en: 'Disk health', it: 'Salute del disco' },
+        alt: {
+          en: 'The health of a disk from its SMART data: a warning, the replaced sectors, the temperature and the history of the readings',
+          it: 'La salute di un disco dai suoi dati SMART: un avviso, i settori sostituiti, la temperatura e lo storico delle letture',
+        },
+      },
+    ],
     shotFit: 'contain',
     tiles: [{ k: 'platform' }, { k: 'installer', asset: /x64-setup\.exe$/i }, { k: 'releases' }, { k: 'license' }],
   },
