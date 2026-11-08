@@ -18,9 +18,11 @@ interface Props {
   alternates?: boolean;
   /** structured data (schema.org) describing the page for search engines */
   jsonLd?: Record<string, unknown>;
+  /** preview image shown when the page is shared, 1200 × 630, from public/og (scripts/og.mjs) */
+  ogImage?: { src: string; alt: string };
 }
 
-const { lang, title, description, path, accent, alternates = true, jsonLd } = Astro.props;
+const { lang, title, description, path, accent, alternates = true, jsonLd, ogImage } = Astro.props;
 const t = ui[lang];
 const alt = otherLang(lang);
 // Absolute URLs need the domain (`site` in astro.config.mjs); until then the links stay relative.
@@ -54,6 +56,18 @@ const href = (l: Lang) => (Astro.site ? new URL(url(l, path), Astro.site).href :
     {Astro.site && alternates && <meta property="og:url" content={href(lang)} />}
     <meta property="og:locale" content={lang === 'it' ? 'it_IT' : 'en_GB'} />
     <meta property="og:locale:alternate" content={lang === 'it' ? 'en_GB' : 'it_IT'} />
+    {
+      ogImage && Astro.site && (
+        <>
+          <meta property="og:image" content={new URL(ogImage.src, Astro.site).href} />
+          <meta property="og:image:type" content="image/jpeg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content={ogImage.alt} />
+          <meta name="twitter:card" content="summary_large_image" />
+        </>
+      )
+    }
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
     <Font cssVariable="--font-display" preload={[{ weight: 500 }]} />
     <Font cssVariable="--font-body" preload={[{ weight: 400 }]} />

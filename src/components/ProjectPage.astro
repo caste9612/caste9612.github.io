@@ -86,7 +86,7 @@ const jsonLd = {
 };
 ---
 
-<Base lang={lang} title={t.titleProject(p.name, p.short[lang])} description={t.metaProject(p.name, p.tagline[lang])} path={`projects/${p.slug}`} accent={p.color} jsonLd={jsonLd}>
+<Base lang={lang} title={t.titleProject(p.name, p.short[lang])} description={t.metaProject(p.name, p.tagline[lang])} path={`projects/${p.slug}`} accent={p.color} jsonLd={jsonLd} ogImage={{ src: `/og/${p.slug}-${lang}.jpg`, alt: `${p.name}: ${p.tagline[lang]}` }}>
   <section class="p-hero" aria-labelledby="p-title" data-starfield data-animated>
     <Starfield />
     <div class="nebula" aria-hidden="true"></div>

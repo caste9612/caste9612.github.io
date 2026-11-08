@@ -9,13 +9,15 @@
     "build": "node scripts/fetch-github.mjs && astro build",
     "build:offline": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "og": "node scripts/og.mjs"
   },
   "dependencies": {
     "astro": "7.4.7"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
+    "playwright-core": "1.65.0",
     "typescript": "6.0.3"
   }
 }

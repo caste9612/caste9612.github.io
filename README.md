@@ -38,6 +38,25 @@ Some screenshots have parts blurred before being added to `src/assets/`:
 
 When a screenshot is replaced, check it for personal or work data before adding it.
 
+## Preview images
+
+When a page is shared (LinkedIn, chats), its preview image comes from `public/og/<page>-<lang>.jpg`,
+1200 × 630. `scripts/og.mjs` draws them from the built site with the Chrome installed on the
+computer: the top of each page, without menu and buttons, with the address of the site. Draw them
+again when the look of the site, a project name or a tagline changes, or when a project is added
+(add it to the list in the script too):
+
+```bash
+npm run build:offline && npm run og && npm run build:offline
+```
+
+## Colours
+
+Every colour of the site is a token at the top of `src/styles/global.css`: pure black surfaces, the
+amber of Brace as the accent, and the Neptune-blue planet of the home page (its surface and its halo
+have tokens of their own). The SVGs of the header and of the hero and the starfield read the same
+tokens. The colour of each project comes from its icon (`color` in `src/data/projects.ts`).
+
 ## Publishing
 
 The site is published on GitHub Pages at https://caste9612.github.io by the workflow in

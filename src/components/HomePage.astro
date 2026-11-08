@@ -61,7 +61,7 @@ const jsonLd = {
 };
 ---
 
-<Base lang={lang} title={t.titleHome} description={t.metaHome} path="" jsonLd={jsonLd}>
+<Base lang={lang} title={t.titleHome} description={t.metaHome} path="" jsonLd={jsonLd} ogImage={{ src: `/og/home-${lang}.jpg`, alt: `${person.name} — ${t.heroRole}` }}>
   <section class="hero" aria-labelledby="hero-name" data-starfield data-parallax data-animated>
     <Starfield />
     <div class="nebula" aria-hidden="true"></div>
