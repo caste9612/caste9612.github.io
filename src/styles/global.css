@@ -27,12 +27,18 @@
   --btn-ink: #1a1206;
   --title-2: #fff2e0;
   --title-3: #ffc47e;
-  --sun-1: #fff3dc;
-  --sun-2: #ffd08a;
-  --sun-3: #ffa133;
-  --sun-4: #e88a1c;
-  --sun-5: #9c5410;
-  --sun-6: #2e1603;
+  /* the planet at the centre of the orbits (also in the logo), Neptune blue: sun-1..6 its surface,
+     pl-1 and pl-2 its halo, pl-hi and pl-hi2 its light bands and rim */
+  --sun-1: #e6f4ff;
+  --sun-2: #a8d8ff;
+  --sun-3: #5aa9f0;
+  --sun-4: #2f6fc8;
+  --sun-5: #1a3f86;
+  --sun-6: #081633;
+  --pl-1: 90 170 245;
+  --pl-2: 47 111 200;
+  --pl-hi: 170 215 255;
+  --pl-hi2: 215 236 255;
   /* stars of the starfield, as r,g,b for the canvas: the base colour and two tints */
   --star: 240,240,244;
   --star-a: 255,214,170;
@@ -179,9 +185,9 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(30% 30% at 50% 33%, rgb(var(--c1) / .2), transparent 70%),
-    radial-gradient(20% 24% at 37% 30%, rgb(var(--c2) / .13), transparent 70%),
-    radial-gradient(20% 24% at 63% 30%, rgb(var(--c2) / .13), transparent 70%),
+    radial-gradient(30% 30% at 50% 33%, rgb(var(--pl-1) / .2), transparent 70%),
+    radial-gradient(20% 24% at 37% 30%, rgb(var(--pl-2) / .13), transparent 70%),
+    radial-gradient(20% 24% at 63% 30%, rgb(var(--pl-2) / .13), transparent 70%),
     radial-gradient(120% 95% at 50% 40%, transparent 52%, rgb(var(--shade) / .9) 100%);
 }
 .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 200px; background: linear-gradient(to bottom, transparent, var(--bg)); z-index: -1; pointer-events: none; }
@@ -201,7 +207,7 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .rt-1 { animation: turn 140s linear infinite; }
 .rt-2 { animation: turn 80s linear infinite reverse; }
 .rt-3 { animation: turn 11s linear infinite; }
-.system::before { content: ""; position: absolute; left: 50%; top: 46%; width: calc(var(--s) * 1.04); height: calc(var(--s) * .38); transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgb(var(--c2) / .17), rgb(var(--c1) / .06) 58%, transparent 100%); pointer-events: none; }
+.system::before { content: ""; position: absolute; left: 50%; top: 46%; width: calc(var(--s) * 1.04); height: calc(var(--s) * .38); transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgb(var(--pl-2) / .17), rgb(var(--pl-1) / .06) 58%, transparent 100%); pointer-events: none; }
 .plane { position: absolute; left: 50%; top: 46%; width: 0; height: 0; transform-style: preserve-3d; transform: rotateY(var(--ry, 0deg)) rotateX(calc(72deg + var(--rx, 0deg))); transition: transform 1.2s var(--ease); }
 .ring { --d: calc(var(--s) * var(--k)); position: absolute; left: 0; top: 0; width: var(--d); height: var(--d); margin: calc(var(--d) / -2) 0 0 calc(var(--d) / -2); border-radius: 50%; border: 1px solid rgb(var(--tint) / .2); transform-style: preserve-3d; pointer-events: none; }
 .r1 { --k: .5; --dur: 40s; --phase: .75; border-color: rgb(var(--tint) / .38); }
@@ -226,8 +232,8 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 
 /* the central planet */
 .core { position: absolute; left: 0; top: 0; width: var(--cs); height: var(--cs); margin: calc(var(--cs) / -2) 0 0 calc(var(--cs) / -2); transform: rotateX(-72deg); transform-style: preserve-3d; pointer-events: none; }
-.core::before { content: ""; position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(closest-side, transparent 74%, rgb(var(--hi) / .26) 82%, rgb(var(--c2) / .1) 90%, transparent 100%); animation: breathe 6s ease-in-out infinite; }
-.sun { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 28%, var(--sun-1) 0%, var(--sun-2) 17%, var(--sun-3) 33%, var(--sun-4) 55%, var(--sun-5) 76%, var(--sun-6) 100%); box-shadow: 0 0 0 1px rgb(var(--hi2) / .24), 0 0 50px 8px rgb(var(--c1) / .36), 0 0 160px 44px rgb(var(--c2) / .22); }
+.core::before { content: ""; position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(closest-side, transparent 74%, rgb(var(--pl-hi) / .26) 82%, rgb(var(--pl-2) / .1) 90%, transparent 100%); animation: breathe 6s ease-in-out infinite; }
+.sun { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 28%, var(--sun-1) 0%, var(--sun-2) 17%, var(--sun-3) 33%, var(--sun-4) 55%, var(--sun-5) 76%, var(--sun-6) 100%); box-shadow: 0 0 0 1px rgb(var(--pl-hi2) / .24), 0 0 50px 8px rgb(var(--pl-1) / .36), 0 0 160px 44px rgb(var(--pl-2) / .22); }
 .sun::before {
   content: "";
   position: absolute;
@@ -235,15 +241,15 @@ section[id], article[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
   border-radius: 50%;
   background:
     repeating-linear-gradient(0deg, rgba(255, 255, 255, .045) 0 3px, transparent 3px 11px),
-    radial-gradient(ellipse 22% 7% at 25% 38%, rgb(var(--hi2) / .24), transparent 70%),
-    radial-gradient(ellipse 15% 6% at 72% 60%, rgb(var(--hi) / .26), transparent 70%),
-    radial-gradient(ellipse 28% 5% at 58% 24%, rgb(var(--hi2) / .16), transparent 70%),
-    radial-gradient(ellipse 18% 5% at 12% 70%, rgb(var(--hi) / .18), transparent 70%);
+    radial-gradient(ellipse 22% 7% at 25% 38%, rgb(var(--pl-hi2) / .24), transparent 70%),
+    radial-gradient(ellipse 15% 6% at 72% 60%, rgb(var(--pl-hi) / .26), transparent 70%),
+    radial-gradient(ellipse 28% 5% at 58% 24%, rgb(var(--pl-hi2) / .16), transparent 70%),
+    radial-gradient(ellipse 18% 5% at 12% 70%, rgb(var(--pl-hi) / .18), transparent 70%);
   background-size: 100% 100%, 200% 100%, 200% 100%, 200% 100%, 200% 100%;
   animation: drift 46s linear infinite;
 }
 @keyframes drift { to { background-position: 0 0, -200% 0, -200% 0, -200% 0, -200% 0; } }
-.sun::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 108%, rgb(var(--shade) / .78) 0%, rgb(var(--shade) / .36) 38%, transparent 64%); box-shadow: inset 0 -16px 34px rgb(var(--shade) / .5), inset 0 10px 24px rgb(var(--hi) / .24); }
+.sun::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 108%, rgb(var(--shade) / .78) 0%, rgb(var(--shade) / .36) 38%, transparent 64%); box-shadow: inset 0 -16px 34px rgb(var(--shade) / .5), inset 0 10px 24px rgb(var(--pl-hi) / .24); }
 
 /* hero copy */
 .hero-copy { position: relative; z-index: 2; margin-top: calc(var(--s) * .012); max-width: 100%; }
