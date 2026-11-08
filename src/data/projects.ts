@@ -24,6 +24,7 @@ import covePanel from '../assets/projects/cove/panel.webp';
 import inlayIcon from '../assets/projects/inlay/icon.png';
 import inlayBoard from '../assets/projects/inlay/board.webp';
 import inlayMosaic from '../assets/projects/inlay/mosaic.webp';
+import inlayMosaicNear from '../assets/projects/inlay/mosaic-near.webp';
 import inlaySearch from '../assets/projects/inlay/search.webp';
 import inlayMove from '../assets/projects/inlay/move.webp';
 
@@ -778,32 +779,40 @@ export const projects: Project[] = [
         src: inlayBoard,
         caption: { en: 'Board', it: 'Bacheca' },
         alt: {
-          en: 'Inlay showing the Work space of a demo vault: its tiles of files and the list of spaces',
-          it: "Inlay con lo spazio Work di un vault di prova: i suoi riquadri di file e l'elenco degli spazi",
+          en: 'Inlay showing the Work space of a demo vault: tiles of files with colored stripes, the newest files first in This week, and the spaces with their sub-spaces on the left',
+          it: "Inlay con lo spazio Work di un vault di prova: riquadri di file con le strisce colorate, i file più recenti in cima a This week, e a sinistra gli spazi con i loro sotto-spazi",
         },
       },
       {
         src: inlayMosaic,
         caption: { en: 'Mosaic', it: 'Mosaic' },
         alt: {
-          en: 'The Mosaic: the whole demo vault on one canvas, with a colored zone for each space',
-          it: 'Il Mosaic: tutto il vault di prova su una tela, con una zona colorata per ogni spazio',
+          en: 'The Mosaic: the whole demo vault on one canvas, with a colored zone for each space and the zones of its sub-spaces inside',
+          it: 'Il Mosaic: tutto il vault di prova su una tela, con una zona colorata per ogni spazio e dentro le zone dei suoi sotto-spazi',
+        },
+      },
+      {
+        src: inlayMosaicNear,
+        caption: { en: 'Mosaic, close up', it: 'Mosaic da vicino' },
+        alt: {
+          en: 'The Mosaic close up on the Clients zone: the sub-spaces of two clients with their tiles, and the ✨ and + buttons on each zone',
+          it: 'Il Mosaic da vicino sulla zona Clients: i sotto-spazi di due clienti con i loro riquadri, e i pulsanti ✨ e + su ogni zona',
         },
       },
       {
         src: inlaySearch,
         caption: { en: 'Search', it: 'Ricerca' },
         alt: {
-          en: 'A search for PDF files across the vault, with the file type filters above the results',
-          it: 'Una ricerca dei PDF in tutto il vault, con i filtri per tipo di file sopra i risultati',
+          en: 'A search for the PDF files of the Work space, with the file type filters above the results and the place of each file',
+          it: 'Una ricerca dei PDF dello spazio Work, con i filtri per tipo di file sopra i risultati e il posto di ogni file',
         },
       },
       {
         src: inlayMove,
         caption: { en: 'Move to…', it: 'Move to…' },
         alt: {
-          en: 'The Move to… dialog, listing tiles and spaces to send a file to',
-          it: 'La finestra Move to…, con i riquadri e gli spazi dove mandare un file',
+          en: 'The Move to… dialog for a folder, listing tiles and spaces with the recent ones first',
+          it: 'La finestra Move to… per una cartella, con i riquadri e gli spazi, prima quelli recenti',
         },
       },
     ],
