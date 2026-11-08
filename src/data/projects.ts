@@ -360,9 +360,9 @@ export const projects: Project[] = [
     slug: 'prism',
     category: 'UtilitiesApplication',
     name: 'Prism',
-    color: '#4fc3f7',
+    // the blue of its icon, the pyramid of 2.0
+    color: '#5b9dff',
     icon: prismIcon,
-    squareIcon: true,
     platform: { en: 'Windows 11', it: 'Windows 11' },
     downloadFor: { en: 'Windows', it: 'Windows' },
     tagline: {
