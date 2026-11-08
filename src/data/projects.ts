@@ -7,7 +7,8 @@ import orbitEditor from '../assets/projects/orbit/editor.webp';
 import orbitActivity from '../assets/projects/orbit/activity.webp';
 import orbitGit from '../assets/projects/orbit/git.webp';
 import orbitDocs from '../assets/projects/orbit/docs.webp';
-import orbitSettings from '../assets/projects/orbit/settings.webp';
+import orbitSolution from '../assets/projects/orbit/solution.webp';
+import orbitNotifications from '../assets/projects/orbit/notifications.webp';
 import pulseIcon from '../assets/projects/pulse/icon.png';
 import pulseDark from '../assets/projects/pulse/dark.webp';
 import pulseLight from '../assets/projects/pulse/light.webp';
@@ -188,42 +189,50 @@ export const projects: Project[] = [
     shots: [
       {
         src: orbitEditor,
-        caption: { en: 'Editor and Claude Code', it: 'Editor e Claude Code' },
+        caption: { en: 'Editor and Claude chats', it: 'Editor e chat di Claude' },
         alt: {
-          en: 'Orbit with five repositories open: a Rust file in the editor and two Claude Code chats side by side, one showing the change it just made',
-          it: "Orbit con cinque repository aperti: un file Rust nell'editor e due chat di Claude Code affiancate, una con la modifica appena fatta",
+          en: 'Orbit on the Prism repository: the file tree with the Shelf below it, a Rust file with the test Claude has just added marked in the margin, the scratchpad underneath, and three Claude Code chats side by side, one showing its edit',
+          it: "Orbit sul repository di Prism: l'albero dei file con lo Shelf sotto, un file Rust con il test appena aggiunto da Claude segnato nel margine, lo scratchpad sotto, e tre chat di Claude Code affiancate, una con la sua modifica",
         },
       },
       {
         src: orbitActivity,
         caption: { en: 'Activity', it: 'Activity' },
         alt: {
-          en: "Orbit's Activity view: the work done by Claude in five repositories, one column each, titled with the commits",
-          it: 'La vista Activity di Orbit: il lavoro fatto da Claude in cinque repository, una colonna ciascuno, con i titoli dei commit',
+          en: "Orbit's Activity view: the work Claude did in five repositories, one column each, with a unit open showing its request, its files and its commit",
+          it: 'La vista Activity di Orbit: il lavoro fatto da Claude in cinque repository, una colonna ciascuno, con una unità aperta che mostra la richiesta, i file e il commit',
+        },
+      },
+      {
+        src: orbitSolution,
+        caption: { en: 'Solution view', it: 'Vista Solution' },
+        alt: {
+          en: "Inlay's solution in the Solution view, with projects, dependencies and nested files, two editor groups with reference counts, and a build in the terminal",
+          it: 'La solution di Inlay nella vista Solution, con progetti, dipendenze e file annidati, due gruppi di editor con il numero di riferimenti, e una build nel terminale',
         },
       },
       {
         src: orbitGit,
-        caption: { en: 'Commit diff', it: 'Diff di un commit' },
+        caption: { en: 'Git graph and diff', it: 'Grafo Git e diff' },
         alt: {
-          en: 'A commit opened from the Git graph, with its diff in red and green',
-          it: 'Un commit aperto dal grafo Git, con il suo diff in rosso e verde',
+          en: "Prism's Git Graph with branches and tags, the diff of a commit beside it, and the change made by Claude in the Source Control panel",
+          it: 'Il Git Graph di Prism con branch e tag, accanto il diff di un commit, e nel pannello Source Control la modifica fatta da Claude',
         },
       },
       {
         src: orbitDocs,
         caption: { en: 'Docs view', it: 'Vista Docs' },
         alt: {
-          en: "Orbit's Docs view with a Markdown file in reading mode and its outline, next to the Claude chats",
-          it: 'La vista Docs di Orbit con un file Markdown in modalità lettura e il suo indice, accanto alle chat di Claude',
+          en: "Pulse's documentation in the Docs view: a Markdown file in reading mode with its outline, next to a terminal",
+          it: 'La documentazione di Pulse nella vista Docs: un file Markdown in modalità lettura con il suo indice, accanto a un terminale',
         },
       },
       {
-        src: orbitSettings,
-        caption: { en: 'Settings', it: 'Impostazioni' },
+        src: orbitNotifications,
+        caption: { en: 'Notifications', it: 'Notifiche' },
         alt: {
-          en: "Orbit's Settings: themes shown as thumbnails, accent colors and the installed version",
-          it: 'Le impostazioni di Orbit: i temi come miniature, i colori di accento e la versione installata',
+          en: 'The notification list with two Claude chats of another repository waiting, over two files of the site code',
+          it: "L'elenco delle notifiche con due chat di Claude di un altro repository in attesa, sopra due file del codice del sito",
         },
       },
     ],
