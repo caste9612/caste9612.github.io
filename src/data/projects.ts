@@ -672,10 +672,10 @@ export const projects: Project[] = [
     shots: [
       {
         src: covePanel,
-        caption: { en: 'The panel', it: 'Il pannello' },
+        caption: { en: 'The panel and the mix', it: 'Il pannello e il mix' },
         alt: {
-          en: "Cove's panel with the four built-in sounds and the mini player playing one of them",
-          it: 'Il pannello di Cove con i quattro suoni inclusi e il mini player che ne riproduce uno',
+          en: "Cove's panel: the library of built-in sounds and, at the bottom, a mix of three sounds playing, rain, drone and white noise, each with its progress and volume",
+          it: 'Il pannello di Cove: la libreria dei suoni inclusi e, in basso, un mix di tre suoni in riproduzione, pioggia, drone e rumore bianco, ognuno con avanzamento e volume',
         },
       },
     ],
