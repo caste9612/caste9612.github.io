@@ -59,6 +59,8 @@ export interface Project {
   squareIcon?: boolean;
   /** shown large on the home page */
   main?: boolean;
+  /** kind of application, for search engines (schema.org applicationCategory) */
+  category: 'DeveloperApplication' | 'UtilitiesApplication' | 'MultimediaApplication';
   platform: Text;
   /** platform in the download button */
   downloadFor: Text;
@@ -88,6 +90,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'orbit',
+    category: 'DeveloperApplication',
     name: 'Orbit',
     color: '#7c5cff',
     icon: orbitIcon,
@@ -228,6 +231,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'pulse',
+    category: 'UtilitiesApplication',
     name: 'Pulse',
     color: '#69f0ae',
     icon: pulseIcon,
@@ -341,6 +345,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'prism',
+    category: 'UtilitiesApplication',
     name: 'Prism',
     color: '#4fc3f7',
     icon: prismIcon,
@@ -458,6 +463,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'argus',
+    category: 'DeveloperApplication',
     name: 'Argus',
     color: '#b388ff',
     icon: argusIcon,
@@ -574,6 +580,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'cove',
+    category: 'MultimediaApplication',
     name: 'Cove',
     color: '#ff8a3d',
     icon: coveIcon,
@@ -677,6 +684,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'inlay',
+    category: 'UtilitiesApplication',
     name: 'Inlay',
     color: '#ffa133',
     icon: inlayIcon,

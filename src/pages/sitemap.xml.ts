@@ -1,17 +1,25 @@
 import type { APIRoute } from 'astro';
 import { projects } from '../data/projects';
+import { repo } from '../lib/github';
 import { langs, url, type Lang } from '../i18n/ui';
 
 // Sitemap for search engines: every page in both languages, each one with the links to its
-// translations (the 404 page is left out).
+// translations (the 404 page is left out). The date of a page is that of the latest release it
+// shows: of its project, or of the newest project for the home page.
 export const GET: APIRoute = ({ site }) => {
   const abs = (lang: Lang, path: string) => new URL(url(lang, path), site).href;
-  const paths = ['', ...projects.map((p) => `projects/${p.slug}`)];
-  const entries = paths.flatMap((path) =>
+  const released = (slug: string) => repo(slug).latest?.date.slice(0, 10) ?? null;
+  const dates = projects.map((p) => released(p.slug)).filter((d): d is string => d !== null);
+  const pages = [
+    { path: '', date: dates.sort().at(-1) ?? null },
+    ...projects.map((p) => ({ path: `projects/${p.slug}`, date: released(p.slug) })),
+  ];
+  const entries = pages.flatMap(({ path, date }) =>
     langs.map((lang) =>
       [
         '  <url>',
         `    <loc>${abs(lang, path)}</loc>`,
+        ...(date ? [`    <lastmod>${date}</lastmod>`] : []),
         ...langs.map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${abs(l, path)}"/>`),
         `    <xhtml:link rel="alternate" hreflang="x-default" href="${abs('en', path)}"/>`,
         '  </url>',

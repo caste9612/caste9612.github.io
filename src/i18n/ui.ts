@@ -18,6 +18,7 @@ interface Strings {
   navContact: string;
   langLabel: string;
   menu: string;
+  titleHome: string;
   metaHome: string;
   heroRole: string;
   heroLede: string;
@@ -51,6 +52,7 @@ interface Strings {
   emailNoJs: string;
   footer: string;
   projects: string;
+  titleProject: (name: string, short: string) => string;
   metaProject: (name: string, tagline: string) => string;
   problemLabel: string;
   solutionLabel: string;
@@ -93,6 +95,7 @@ export const ui: Record<Lang, Strings> = {
     navContact: 'Contact',
     langLabel: 'Language',
     menu: 'Menu',
+    titleHome: 'Antonio Castellucci — Software engineer',
     metaHome: 'Antonio Castellucci, software engineer in R&D. Open-source desktop software: free to download, with source code on GitHub.',
     heroRole: 'Software engineer, R&D — Tuscany, Italy',
     heroLede: 'I work on software for laboratory automation and digital pathology. Here I publish the open-source tools I build in my spare time.',
@@ -127,6 +130,7 @@ export const ui: Record<Lang, Strings> = {
     emailNoJs: 'The email address is shown with JavaScript enabled.',
     footer: 'No cookies, no tracking',
     projects: 'Projects',
+    titleProject: (name, short) => `${name} — ${short} | Antonio Castellucci`,
     metaProject: (name, tagline) => `${name}: ${tagline} Free download, source code on GitHub.`,
     problemLabel: 'The problem',
     solutionLabel: 'The solution',
@@ -167,6 +171,7 @@ export const ui: Record<Lang, Strings> = {
     navContact: 'Contatti',
     langLabel: 'Lingua',
     menu: 'Menu',
+    titleHome: 'Antonio Castellucci — Ingegnere informatico',
     metaHome: 'Antonio Castellucci, ingegnere informatico in R&D. Software desktop open source: si scarica gratis e il codice è su GitHub.',
     heroRole: 'Ingegnere informatico, R&D — Toscana',
     heroLede: "Mi occupo di software per l'automazione di laboratorio e la patologia digitale. Qui pubblico gli strumenti open source che sviluppo nel tempo libero.",
@@ -201,6 +206,7 @@ export const ui: Record<Lang, Strings> = {
     emailNoJs: "L'indirizzo email compare con JavaScript attivo.",
     footer: 'Nessun cookie, nessun tracciamento',
     projects: 'Progetti',
+    titleProject: (name, short) => `${name} — ${short} | Antonio Castellucci`,
     metaProject: (name, tagline) => `${name}: ${tagline} Si scarica gratis, il codice è su GitHub.`,
     problemLabel: 'Il problema',
     solutionLabel: 'La soluzione',

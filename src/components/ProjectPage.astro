@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Starfield from './Starfield.astro';
 import IconStage from './IconStage.astro';
@@ -63,9 +64,29 @@ const tiles = p.tiles.map((tile) => ({ k: tileLabel[tile.k], v: tileValue(tile) 
 const meta = [latest && version(latest.tag), latest && formatDate(lang, latest.date), p.platform[lang], license && t.licenseName(license)].filter(Boolean).join(' · ');
 const title = latest ? releaseTitle(latest) : null;
 const others = projects.filter((o) => o.slug !== p.slug);
+
+// The application, for search engines (schema.org).
+const shot = p.shots[0] && (await getImage({ src: p.shots[0].src, width: Math.min(p.shots[0].src.width, 1600), format: 'webp' }));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: p.name,
+  description: p.tagline[lang],
+  url: new URL(url(lang, `projects/${p.slug}`), Astro.site).href,
+  applicationCategory: p.category,
+  operatingSystem: p.platform.en.replace(' and ', ', '),
+  ...(latest && { softwareVersion: latest.tag.replace(/^v/, ''), dateModified: latest.date.slice(0, 10) }),
+  ...(gh.firstRelease && { datePublished: gh.firstRelease.slice(0, 10) }),
+  ...(license === 'MIT' && { license: 'https://opensource.org/licenses/MIT' }),
+  ...(shot && { screenshot: new URL(shot.src, Astro.site).href }),
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  downloadUrl: `${gh.url}/releases/latest`,
+  author: { '@type': 'Person', '@id': `${Astro.site}#person`, name: person.name, url: Astro.site?.href },
+};
 ---
 
-<Base lang={lang} title={`${p.name} — ${person.name}`} description={t.metaProject(p.name, p.tagline[lang])} path={`projects/${p.slug}`} accent={p.color}>
+<Base lang={lang} title={t.titleProject(p.name, p.short[lang])} description={t.metaProject(p.name, p.tagline[lang])} path={`projects/${p.slug}`} accent={p.color} jsonLd={jsonLd}>
   <section class="p-hero" aria-labelledby="p-title" data-starfield data-animated>
     <Starfield />
     <div class="nebula" aria-hidden="true"></div>

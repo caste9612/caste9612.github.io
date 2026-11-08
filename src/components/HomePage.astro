@@ -12,10 +12,10 @@ import Experience from './Experience.astro';
 import Glyph from './Glyph.astro';
 import photo from '../assets/about/photo.jpg';
 import { mainProjects, otherProjects, projects } from '../data/projects';
-import { person, about, education, skills } from '../data/site';
+import { person, about, experience, education, skills } from '../data/site';
 import { publicRepos, repo } from '../lib/github';
 import { formatDate, version } from '../lib/format';
-import { ui, type Lang } from '../i18n/ui';
+import { ui, url, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -32,9 +32,36 @@ const newest = projects
 // The email address goes into the page reversed and in base64, never whole: src/scripts/contact.ts
 // puts it back together when the visitor clicks the button.
 const mail = btoa([...person.email.join('@')].reverse().join(''));
+
+// The person and the site, for search engines (schema.org).
+const home = new URL(url(lang), Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${Astro.site}#person`,
+      name: person.name,
+      url: Astro.site?.href,
+      jobTitle: experience[0].role.en,
+      worksFor: { '@type': 'Organization', name: experience[0].org },
+      alumniOf: { '@type': 'CollegeOrUniversity', name: education[0].school.en },
+      sameAs: [person.github, person.linkedin],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${home}#website`,
+      url: home,
+      name: person.name,
+      description: t.metaHome,
+      inLanguage: lang,
+      author: { '@id': `${Astro.site}#person` },
+    },
+  ],
+};
 ---
 
-<Base lang={lang} title={person.name} description={t.metaHome} path="">
+<Base lang={lang} title={t.titleHome} description={t.metaHome} path="" jsonLd={jsonLd}>
   <section class="hero" aria-labelledby="hero-name" data-starfield data-parallax data-animated>
     <Starfield />
     <div class="nebula" aria-hidden="true"></div>

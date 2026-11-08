@@ -3,6 +3,7 @@ import { Font } from 'astro:assets';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { person } from '../data/site';
 import { ui, url, otherLang, type Lang } from '../i18n/ui';
 
 interface Props {
@@ -15,9 +16,11 @@ interface Props {
   accent?: string;
   /** links to the same page in the other language (not for the 404 page) */
   alternates?: boolean;
+  /** structured data (schema.org) describing the page for search engines */
+  jsonLd?: Record<string, unknown>;
 }
 
-const { lang, title, description, path, accent, alternates = true } = Astro.props;
+const { lang, title, description, path, accent, alternates = true, jsonLd } = Astro.props;
 const t = ui[lang];
 const alt = otherLang(lang);
 // Absolute URLs need the domain (`site` in astro.config.mjs); until then the links stay relative.
@@ -45,9 +48,13 @@ const href = (l: Lang) => (Astro.site ? new URL(url(l, path), Astro.site).href :
       )
     }
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={person.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    {Astro.site && alternates && <meta property="og:url" content={href(lang)} />}
     <meta property="og:locale" content={lang === 'it' ? 'it_IT' : 'en_GB'} />
+    <meta property="og:locale:alternate" content={lang === 'it' ? 'en_GB' : 'it_IT'} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
     <Font cssVariable="--font-display" preload={[{ weight: 500 }]} />
     <Font cssVariable="--font-body" preload={[{ weight: 400 }]} />
     <Font cssVariable="--font-mono" />
