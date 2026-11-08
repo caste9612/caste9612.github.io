@@ -51,6 +51,6 @@ const slideshow = shots.length > 1;
   {p.summary && <p class="tx">{p.summary[lang]}</p>}
   <div class="actions">
     <a class="btn primary brk" href={page} aria-label={t.detailsOf(p.name)}>{t.details}<Icon name="arrowRight" /></a>
-    <a class="btn brk" href={`${gh.url}/releases/latest`}><Icon name="download" />{t.downloadFor(p.downloadFor)}</a>
+    <a class="btn brk" href={`${gh.url}/releases/latest`}><Icon name="download" />{t.downloadFor(p.downloadFor[lang])}</a>
   </div>
 </article>

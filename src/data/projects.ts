@@ -61,7 +61,7 @@ export interface Project {
   main?: boolean;
   platform: Text;
   /** platform in the download button */
-  downloadFor: string;
+  downloadFor: Text;
   tagline: Text;
   /** short label in the "other projects" row */
   short: Text;
@@ -92,8 +92,8 @@ export const projects: Project[] = [
     color: '#7c5cff',
     icon: orbitIcon,
     main: true,
-    platform: { en: 'Windows', it: 'Windows' },
-    downloadFor: 'Windows',
+    platform: { en: 'Windows and Linux', it: 'Windows e Linux' },
+    downloadFor: { en: 'Windows and Linux', it: 'Windows e Linux' },
     tagline: {
       en: 'Lightweight IDE designed to work alongside Claude Code.',
       it: 'IDE leggero pensato per lavorare insieme a Claude Code.',
@@ -124,16 +124,16 @@ export const projects: Project[] = [
         glyph: 'folder',
         title: { en: 'Repositories and files', it: 'Repository e file' },
         text: {
-          en: 'Each repository is a tab with its own color, and can move to a window of its own. The tree shows the real file system with git changes as they happen; for .NET repositories it can also show the solution, as Visual Studio does, with Build and Run. Quick Open and full-text search.',
-          it: "Ogni repository è una scheda con il suo colore e può passare in una finestra sua. L'albero mostra il file system reale con le modifiche git mentre avvengono; nei repository .NET può mostrare anche la solution, come Visual Studio, con Build e Run. Apertura rapida e ricerca nel testo.",
+          en: 'Each repository is a tab with its own color, and can move to a window of its own. The tree shows the real file system with git changes as they happen; folders you rarely open, like build output, go on the Shelf below it. For .NET repositories it can also show the solution, as Visual Studio does, with Build and Run.',
+          it: "Ogni repository è una scheda con il suo colore e può passare in una finestra sua. L'albero mostra il file system reale con le modifiche git mentre avvengono; le cartelle che apri di rado, come l'output delle build, vanno nello Shelf sotto l'albero. Nei repository .NET può mostrare anche la solution, come Visual Studio, con Build e Run.",
         },
       },
       {
         glyph: 'editor',
         title: { en: 'Editor', it: 'Editor' },
         text: {
-          en: 'CodeMirror 6 with about 140 languages loaded on demand, split view, Markdown and HTML preview, images and PDFs. Files changed on disk reload by themselves, and reopen where you left them.',
-          it: 'CodeMirror 6 con circa 140 linguaggi caricati quando servono, vista divisa, anteprima di Markdown e HTML, immagini e PDF. I file modificati su disco si ricaricano da soli e si riaprono dove li avevi lasciati.',
+          en: 'CodeMirror 6 with about 140 languages loaded on demand, up to six editor groups in rows and columns, Markdown and HTML preview, images and PDFs. Files changed on disk reload by themselves, and reopen where you left them.',
+          it: 'CodeMirror 6 con circa 140 linguaggi caricati quando servono, fino a sei gruppi di editor in righe e colonne, anteprima di Markdown e HTML, immagini e PDF. I file modificati su disco si ricaricano da soli e si riaprono dove li avevi lasciati.',
         },
       },
       {
@@ -148,8 +148,8 @@ export const projects: Project[] = [
         glyph: 'terminal',
         title: { en: 'Terminal', it: 'Terminale' },
         text: {
-          en: 'Real terminals in tabs, up to four Claude chats or shells side by side, clickable file paths and links. Terminals and Claude chats come back, with their conversations, when Orbit reopens.',
-          it: 'Terminali veri in schede, fino a quattro chat di Claude o shell affiancate, percorsi e link cliccabili. Terminali e chat di Claude tornano, con le loro conversazioni, quando Orbit si riapre.',
+          en: 'Real terminals in tabs, up to six Claude chats or shells side by side, clickable file paths and links. Terminals and Claude chats come back, with their conversations, when Orbit reopens.',
+          it: 'Terminali veri in schede, fino a sei chat di Claude o shell affiancate, percorsi e link cliccabili. Terminali e chat di Claude tornano, con le loro conversazioni, quando Orbit si riapre.',
         },
       },
       {
@@ -164,8 +164,8 @@ export const projects: Project[] = [
         glyph: 'spark',
         title: { en: 'Claude Code', it: 'Claude Code' },
         text: {
-          en: 'A timeline of the work Claude did in every repository, titled with its commits, a Claude menu with prompt shortcuts, and a notice when a chat is waiting for you.',
-          it: 'Una cronologia del lavoro fatto da Claude in ogni repository, con i titoli dei commit, un menu Claude con prompt pronti e un avviso quando una chat ti aspetta.',
+          en: 'A timeline of the work Claude did in every repository, titled with its commits, a Claude menu with prompt shortcuts, and one notice, with a soft chime, listing the chats that are waiting for you.',
+          it: 'Una cronologia del lavoro fatto da Claude in ogni repository, con i titoli dei commit, un menu Claude con prompt pronti e un solo avviso, con un suono leggero, che elenca le chat che ti aspettano.',
         },
       },
     ],
@@ -175,8 +175,8 @@ export const projects: Project[] = [
         it: "Windows con WebView2, già presente in Windows 11. L'installer è disponibile come .exe o .msi; poi le versioni nuove arrivano da GitHub e si installano con un clic.",
       },
       {
-        en: 'The code is written to be cross-platform; builds for Linux and macOS are not published yet.',
-        it: 'Il codice è scritto per essere multipiattaforma; le versioni per Linux e macOS non sono ancora pubblicate.',
+        en: 'Linux: an AppImage for any distribution, a .deb for Debian and Ubuntu, an .rpm for Fedora and openSUSE, and a PKGBUILD for Arch. Orbit uses the WebKitGTK of the system, present on most desktops (the AppImage brings its own), and updates itself there too; the Arch package is updated by pacman.',
+        it: "Linux: un AppImage per qualsiasi distribuzione, un .deb per Debian e Ubuntu, un .rpm per Fedora e openSUSE e un PKGBUILD per Arch. Orbit usa il WebKitGTK del sistema, presente nella maggior parte dei desktop (l'AppImage ha il suo), e si aggiorna da solo anche lì; il pacchetto per Arch lo aggiorna pacman.",
       },
     ],
     stack: ['Rust', 'Tauri 2', 'Svelte 5', 'TypeScript', 'Tailwind CSS 4', 'CodeMirror 6', 'xterm.js', 'libgit2'],
@@ -233,7 +233,7 @@ export const projects: Project[] = [
     icon: pulseIcon,
     main: true,
     platform: { en: 'Windows 10/11', it: 'Windows 10/11' },
-    downloadFor: 'Windows',
+    downloadFor: { en: 'Windows', it: 'Windows' },
     tagline: { en: 'System monitor widget for Windows.', it: 'Widget di monitoraggio del sistema per Windows.' },
     short: { en: 'System monitor', it: 'Monitor di sistema' },
     summary: {
@@ -346,7 +346,7 @@ export const projects: Project[] = [
     icon: prismIcon,
     squareIcon: true,
     platform: { en: 'Windows', it: 'Windows' },
-    downloadFor: 'Windows',
+    downloadFor: { en: 'Windows', it: 'Windows' },
     tagline: { en: 'Disk analyzer and duplicate finder.', it: 'Analisi dei dischi e ricerca dei duplicati.' },
     short: { en: 'Disk analyzer', it: 'Analisi dei dischi' },
     need: {
@@ -462,7 +462,7 @@ export const projects: Project[] = [
     color: '#b388ff',
     icon: argusIcon,
     platform: { en: 'Windows 10/11', it: 'Windows 10/11' },
-    downloadFor: 'Windows',
+    downloadFor: { en: 'Windows', it: 'Windows' },
     tagline: { en: 'Educational profiler for Windows.', it: 'Profiler didattico per Windows.' },
     short: { en: 'Profiler', it: 'Profiler' },
     need: {
@@ -577,8 +577,8 @@ export const projects: Project[] = [
     name: 'Cove',
     color: '#ff8a3d',
     icon: coveIcon,
-    platform: { en: 'Windows 10/11', it: 'Windows 10/11' },
-    downloadFor: 'Windows',
+    platform: { en: 'Windows and Linux', it: 'Windows e Linux' },
+    downloadFor: { en: 'Windows and Linux', it: 'Windows e Linux' },
     tagline: {
       en: 'System-tray player for background audio.',
       it: "Player nell'area di notifica per l'audio di sottofondo.",
@@ -593,74 +593,74 @@ export const projects: Project[] = [
       it: 'Per avere rumore bianco o pioggia mentre lavoravo dovevo tenere aperto il video in una scheda del browser, con pubblicità e interruzioni.',
     },
     solution: {
-      en: 'It downloads the audio once, at its original quality, and plays it from a small panel in the system tray, also with the media keys.',
-      it: "Scarica l'audio una volta, alla qualità originale, e lo riproduce da un piccolo pannello nell'area di notifica, anche con i tasti multimediali.",
+      en: 'It downloads the audio once, at its original quality, and plays it from a small panel in the system tray, also with the media keys. Several sounds can play together, each with its own volume.',
+      it: "Scarica l'audio una volta, alla qualità originale, e lo riproduce da un piccolo pannello nell'area di notifica, anche con i tasti multimediali. Più suoni possono suonare insieme, ognuno con il suo volume.",
     },
     intro: {
-      en: 'Cove downloads audio at the best available quality and plays it from a small panel that slides out of the system tray. It is meant for focus audio such as white noise, rain or ambient music.',
-      it: "Cove scarica l'audio alla migliore qualità disponibile e lo riproduce da un piccolo pannello che esce dall'area di notifica. È pensato per l'audio di concentrazione, come rumore bianco, pioggia o musica ambient.",
+      en: 'Cove downloads audio at the best available quality and plays it from a small panel that slides out of the system tray. It is meant for focus audio such as white noise, rain or ambient music, and mixes several sounds: rain over a drone, white noise under music.',
+      it: "Cove scarica l'audio alla migliore qualità disponibile e lo riproduce da un piccolo pannello che esce dall'area di notifica. È pensato per l'audio di concentrazione, come rumore bianco, pioggia o musica ambient, e mescola più suoni: la pioggia sopra un drone, il rumore bianco sotto la musica.",
     },
     features: [
       {
         glyph: 'tray',
         title: { en: 'Tray panel', it: "Pannello nell'area di notifica" },
         text: {
-          en: 'A click on the tray icon opens a panel in the bottom-right corner; there is nothing else to open.',
-          it: "Un clic sull'icona apre un pannello in basso a destra; non c'è altro da aprire.",
+          en: 'A click on the tray icon opens a panel in the corner of the screen; there is nothing else to open.',
+          it: "Un clic sull'icona apre un pannello nell'angolo dello schermo; non c'è altro da aprire.",
         },
       },
       {
         glyph: 'wave',
         title: { en: 'Original quality', it: 'Qualità originale' },
         text: {
-          en: 'Audio is kept in its original format (Opus), without being converted again.',
-          it: "L'audio resta nel formato originale (Opus), senza essere riconvertito.",
+          en: 'Audio is kept in its original format (Opus), without being converted again. A link copied to the clipboard is offered when the panel opens.',
+          it: "L'audio resta nel formato originale (Opus), senza essere riconvertito. Un link copiato negli appunti viene proposto all'apertura del pannello.",
         },
       },
       {
-        glyph: 'play',
-        title: { en: 'Mini player', it: 'Mini player' },
+        glyph: 'preset',
+        title: { en: 'Mix', it: 'Mix' },
         text: {
-          en: 'Play, pause, seek and volume inside the panel.',
-          it: 'Play, pausa, avanzamento e volume dentro il pannello.',
+          en: 'Every sound has its own play button and volume, and several play at once. The mix has a strip for each sound, with progress and volume, and comes back paused the next time Cove starts.',
+          it: 'Ogni suono ha il suo play e il suo volume, e più suoni suonano insieme. Il mix ha una striscia per ogni suono, con avanzamento e volume, e torna in pausa al riavvio di Cove.',
         },
       },
       {
         glyph: 'keys',
         title: { en: 'Media keys', it: 'Tasti multimediali' },
         text: {
-          en: 'The play and pause keys of keyboards and headphones control Cove from anywhere.',
-          it: 'I tasti play e pausa di tastiere e cuffie controllano Cove da qualsiasi punto.',
+          en: 'The play and pause keys of keyboards and headphones control the mix from anywhere. Cove also shows up in the media controls of Windows and of Linux desktops.',
+          it: 'I tasti play e pausa di tastiere e cuffie controllano il mix da qualsiasi punto. Cove compare anche nei controlli multimediali di Windows e dei desktop Linux.',
         },
       },
       {
         glyph: 'library',
         title: { en: 'Library', it: 'Libreria' },
         text: {
-          en: 'Every downloaded file stays available in the panel; a link copied to the clipboard is offered when the panel opens.',
-          it: "Ogni file scaricato resta disponibile nel pannello; un link copiato negli appunti viene proposto all'apertura del pannello.",
+          en: 'Every downloaded file stays available in the panel, next to four built-in sounds: two kinds of white noise, a drone and rain.',
+          it: 'Ogni file scaricato resta disponibile nel pannello, accanto a quattro suoni inclusi: due tipi di rumore bianco, un drone e la pioggia.',
         },
       },
       {
-        glyph: 'preset',
-        title: { en: 'Presets', it: 'Preset' },
+        glyph: 'refresh',
+        title: { en: 'Keeps working', it: 'Continua a funzionare' },
         text: {
-          en: 'Four built-in sounds: two kinds of white noise, a drone and rain.',
-          it: 'Quattro suoni inclusi: due tipi di rumore bianco, un drone e la pioggia.',
+          en: "The downloader, yt-dlp, updates itself, so a change on YouTube's side doesn't need a new version of Cove.",
+          it: 'Il programma che scarica, yt-dlp, si aggiorna da solo: un cambiamento lato YouTube non richiede una nuova versione di Cove.',
         },
       },
     ],
     requirements: [
       {
-        en: 'Windows 10 or 11, 64-bit. The installer does not need administrator rights.',
-        it: "Windows 10 o 11 a 64 bit. L'installer non richiede i permessi di amministratore.",
+        en: 'Windows 10 or 11, 64-bit, with an installer that does not need administrator rights. Linux x86_64 with glibc 2.34 or newer, as an AppImage, and a system tray; GNOME needs the AppIndicator extension.',
+        it: "Windows 10 o 11 a 64 bit, con un installer che non richiede i permessi di amministratore. Linux x86_64 con glibc 2.34 o più recente, come AppImage, e un'area di notifica; GNOME richiede l'estensione AppIndicator.",
       },
       {
-        en: 'It includes everything Cove needs to run, which is why it is larger than the others.',
-        it: 'Contiene tutto quello che serve a Cove per funzionare, per questo è più grande degli altri.',
+        en: 'Both include everything Cove needs, Python too, which is why they are larger than the others. The interface is in Italian.',
+        it: "Entrambi contengono tutto quello che serve a Cove, anche Python, per questo sono più grandi degli altri. L'interfaccia è in italiano.",
       },
     ],
-    stack: ['Python', 'PySide6', 'FFmpeg'],
+    stack: ['Python', 'PySide6', 'Qt Multimedia', 'FFmpeg', 'yt-dlp'],
     statedLicense: 'MIT',
     shots: [
       {
@@ -681,7 +681,7 @@ export const projects: Project[] = [
     color: '#ffa133',
     icon: inlayIcon,
     platform: { en: 'Windows 11', it: 'Windows 11' },
-    downloadFor: 'Windows',
+    downloadFor: { en: 'Windows', it: 'Windows' },
     tagline: {
       en: 'A desk you call up with a shortcut, in place of the Windows desktop.',
       it: 'Una scrivania da richiamare con una scorciatoia, al posto del desktop di Windows.',

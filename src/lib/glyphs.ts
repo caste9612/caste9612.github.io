@@ -33,6 +33,7 @@ export const glyphs = {
   board: '<rect x="3.5" y="3.5" width="7" height="17" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
   cursor: '<path d="M5.5 4.5 18 10l-5.4 1.8-1.8 5.4z"/><path d="m13 13 5.5 5.5"/>',
   undo: '<path d="M9 5.5 4.5 10 9 14.5"/><path d="M4.5 10h10a5 5 0 0 1 0 10H11"/>',
+  refresh: '<path d="M19.5 11A7.5 7.5 0 0 0 6.2 7.2L4.5 9"/><path d="M4.5 4.5V9H9"/><path d="M4.5 13a7.5 7.5 0 0 0 13.3 3.8l1.7-1.8"/><path d="M19.5 19.5V15H15"/>',
   canvas: '<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M8 9h3v3H8zM13 13h3.5v3H13zM13 8.5h3"/>',
   send: '<path d="M20.5 3.5 3.5 10.5l7 2.5 2.5 7z"/><path d="m10.5 13 4-4"/>',
   robot: '<path d="M4 20.5h11"/><path d="M6.5 20.5V19a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5v1.5"/><path d="M9.5 17.5v-3"/><circle cx="9.5" cy="12.5" r="2"/><path d="m11 11.1 3.5-3.2"/><circle cx="16" cy="6.5" r="2"/><path d="m17.4 7.9 2.1 2.1"/><path d="M17.8 12.6v-1.6h3.4v1.6M17.8 12.6v1.4M21.2 12.6v1.4M19.5 10v1"/>',
